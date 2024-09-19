@@ -2,9 +2,11 @@
   "name": "Tema1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Sesion2/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sesion1": "node ./Sesion1/index.js",
+    "sesion2": "node ./Sesion2/index.js"
   },
   "private": true
 }
