@@ -1,0 +1,21 @@
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    color: rgba(108, 108, 108, 0.48);
+    margin: 15px;
+}
+
+ul {
+    border: black dotted 4px;
+}
+
+#destacado {
+    background-color: #a89443;
+}
+
+.importante {
+    font-weight: bold;
+}
