@@ -1,0 +1,18 @@
+.Tarjeta {
+    background-color: beige;
+    width: 20%;
+    display: inline-grid;
+    margin: 6.5%;
+}
+
+.Tarjeta:hover {
+    background-color: #4eeab6
+}
+
+.Nombre {
+    text-align: center;
+}
+
+.Datos {
+    margin-left: 8%;
+}
