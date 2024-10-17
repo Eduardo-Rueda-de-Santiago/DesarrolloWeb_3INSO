@@ -1,0 +1,33 @@
+.PetProfile {
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.PetImage {
+    width: 60%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.PetName {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.PetCard {
+
+    display: flex;
+    flex-direction: row;
+}
+
+.PetData {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
