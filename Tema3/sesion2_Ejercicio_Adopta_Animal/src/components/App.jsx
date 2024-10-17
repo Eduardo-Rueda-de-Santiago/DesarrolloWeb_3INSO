@@ -15,10 +15,10 @@ function App() {
     };
 
     const filterSetter = (param) => {
-
+        console.log("param", param);
         const newFilterParams = {...filterParams, ...param};
+        console.log("newFilterParams", newFilterParams);
         setFilterParams(newFilterParams);
-        console.log(filterParams)
     }
 
     DataFetcher({dataSetter});
@@ -32,7 +32,8 @@ function App() {
                     petDataList
                         .filter((petData) => {
                             return (
-                                (petData.tipo === filterParams.tipo || filterParams.tipo === null)
+                                (!filterParams.hasOwnProperty("tipo") || petData.tipo === filterParams.tipo) &&
+                                (!filterParams.hasOwnProperty("edad") || petData.edad === filterParams.edad)
                             );
                         })
                         .map((petData) => {

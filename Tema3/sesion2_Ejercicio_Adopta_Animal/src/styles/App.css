@@ -3,5 +3,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
     grid-auto-rows: minmax(auto, auto);
 }

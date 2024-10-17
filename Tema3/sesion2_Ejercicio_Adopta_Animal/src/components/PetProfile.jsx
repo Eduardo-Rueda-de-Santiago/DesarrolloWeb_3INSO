@@ -1,8 +1,6 @@
 import '../styles/PetProfile.css';
 
 function PetProfile({petData}) {
-
-    console.log(petData)
     return (
         <div className={"PetProfile"}>
             <p className={"PetName"} style={{color: `${petData.color}`}}>{petData.nombre}</p>

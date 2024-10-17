@@ -1,10 +1,13 @@
 .PetProfile {
     align-items: center;
-    margin: 20px;
-    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: 90%;
+    width: 100%;
+}
+
+.PetProfile:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    scale: 1.05;
 }
 
 .PetImage {
@@ -17,13 +20,13 @@
 .PetName {
     font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 .PetCard {
-
     display: flex;
     flex-direction: row;
+    margin: 10px;
 }
 
 .PetData {
