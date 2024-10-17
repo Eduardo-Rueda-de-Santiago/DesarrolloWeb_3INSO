@@ -15,7 +15,7 @@ function Validator({loginData}) {
             })
     }, []);
 
-    return databaseData.filter((user) =>
+    return databaseData.find((user) =>
         (user.email === loginData.email) &&
         (user.username === loginData.password)
     ).length > 0 ?
