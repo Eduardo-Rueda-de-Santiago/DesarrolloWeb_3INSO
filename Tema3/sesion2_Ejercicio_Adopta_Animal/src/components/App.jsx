@@ -14,11 +14,8 @@ function App() {
         setPetDataList(data);
     };
 
-    const filterSetter = (param) => {
-        console.log("param", param);
-        const newFilterParams = {...filterParams, ...param};
-        console.log("newFilterParams", newFilterParams);
-        setFilterParams(newFilterParams);
+    const filterSetter = (filter) => {
+        setFilterParams(filter);
     }
 
     DataFetcher({dataSetter});
@@ -30,14 +27,11 @@ function App() {
             <div className={"PetDisplay"}>
                 {
                     petDataList
-                        .filter((petData) => {
-                            return (
-                                (!filterParams.hasOwnProperty("tipo") || petData.tipo === filterParams.tipo) &&
-                                (!filterParams.hasOwnProperty("edad") || petData.edad === filterParams.edad)
-                            );
-                        })
-                        .map((petData) => {
-                            return <PetProfile petData={petData}/>;
+                        .filter((petData) =>
+                            Object.keys(filterParams).every(key => petData[key] === filterParams[key])
+                        )
+                        .map((petData, index) => {
+                            return <PetProfile key={index} petData={petData}/>;
                         })
                 }
             </div>
