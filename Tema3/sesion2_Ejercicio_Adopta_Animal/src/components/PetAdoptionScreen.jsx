@@ -1,19 +1,29 @@
-import Home from "./Home";
 import '../styles/PetAdoptionScreen.css';
+import HomeButton from "./HomeButton";
+import AdoptionForm from "./AdoptionForm";
 
 function PetAdoptionScreen({petData, screenSetter}) {
     return (
         <div className={"PetAdoptionScreen"}>
-            <button className={"HomeButton"} onClick={() => screenSetter(<Home screenSetter={screenSetter}/>)}>
-                Home
-            </button>
+
+            <HomeButton screenSetter={screenSetter}/>
             <div className={"PetCompleteProfile"}>
-                <p className={"PetName"}>{petData.nombre}</p>
+                <p className={"PetName-Adoption-Screen"}>{petData.nombre}</p>
 
                 <div className={"PetDisplay"}>
 
-                    <img className={"PetFullImage"} src={petData.imagen}/>
-
+                    <div>
+                        <img className={"PetFullImage"} src={petData.imagen}/>
+                        <button className={"AdoptButton"}
+                                onClick={
+                                    () => {
+                                        screenSetter(<AdoptionForm screenSetter={screenSetter}
+                                                                   petData={petData}/>)
+                                    }
+                                }
+                        >Give a new home
+                        </button>
+                    </div>
                     <div className={"PetData"}>
 
                         <p>{petData.tipo}</p>
@@ -31,7 +41,6 @@ function PetAdoptionScreen({petData, screenSetter}) {
 
             </div>
 
-            <div className={"AdoptForm"}></div>
         </div>
     );
 

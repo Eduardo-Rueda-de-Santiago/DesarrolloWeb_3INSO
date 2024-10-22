@@ -101,7 +101,7 @@ function Filter({filterSetter, petData}) {
         <div className={"Buscador"}>
 
             <select className={"Filtro"} onChange={changePetType}>
-                <option className={"Opcion"} value={''}>No filtrar</option>
+                <option className={"Opcion"} value={''}>Tipo</option>
                 {
                     petTypeList.map((type, index) => {
                         return <option className={"Opcion"} key={index} value={type}>{type}</option>
@@ -111,7 +111,7 @@ function Filter({filterSetter, petData}) {
 
 
             <select className={"Filtro"} onChange={changePetAge}>
-                <option className={"Opcion"} value={''}>No filtrar</option>
+                <option className={"Opcion"} value={''}>Edad</option>
                 {
                     ageList.map((age, index) => {
                         return <option className={"Opcion"} key={index} value={age}>{age}</option>
@@ -120,7 +120,7 @@ function Filter({filterSetter, petData}) {
             </select>
 
             <select className={"Filtro"} onChange={changePetGenre}>
-                <option className={"Opcion"} value={''}>No filtrar</option>
+                <option className={"Opcion"} value={''}>Género</option>
                 {
                     petGeneroList.map((age, index) => {
                         return <option className={"Opcion"} key={index} value={age}>{age}</option>
@@ -129,7 +129,7 @@ function Filter({filterSetter, petData}) {
             </select>
 
             <select className={"Filtro"} onChange={changePetEstado}>
-                <option className={"Opcion"} value={''}>No filtrar</option>
+                <option className={"Opcion"} value={''}>Estado</option>
                 {
                     petEstadoList.map((age, index) => {
                         return <option className={"Opcion"} key={index} value={age}>{age}</option>

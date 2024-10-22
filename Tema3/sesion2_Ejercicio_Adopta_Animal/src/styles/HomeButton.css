@@ -1,0 +1,11 @@
+.HomeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    padding: 20px;
+    width: 10vw;
+    background-color: #9cb84c;
+    border: none;
+    border-radius: 5px;
+}

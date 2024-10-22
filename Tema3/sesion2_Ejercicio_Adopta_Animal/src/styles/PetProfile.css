@@ -11,14 +11,14 @@
 }
 
 .PetImage {
-    width: 60%;
-    height: 200px;
+    width: 200px;
+    height: 220px;
     border-radius: 10px;
     object-fit: cover;
 }
 
 .PetName {
-    font-size: 20px;
+    font-size: 1.3em;
     font-weight: bold;
     margin: 10px;
 }
@@ -26,6 +26,7 @@
 .PetCard {
     display: flex;
     flex-direction: row;
+    column-gap: 10px;
     margin: 10px;
 }
 
@@ -33,4 +34,5 @@
     display: flex;
     flex-direction: column;
     padding-left: 30px;
+    width: 100%;
 }
