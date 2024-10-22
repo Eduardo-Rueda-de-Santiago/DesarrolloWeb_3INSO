@@ -1,40 +1,23 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-import '../styles/App.css';
-import DataFetcher from "./DataFetcher";
-import PetProfile from "./PetProfile";
-import Filter from "./Filter";
+import Home from "./Home";
 
 function App() {
 
-    const [petDataList, setPetDataList] = useState([]);
-    const [filterParams, setFilterParams] = useState({});
+    const [screen, setScreen] = useState(<p>Loading</p>);
 
-    const dataSetter = (data) => {
-        setPetDataList(data);
-    };
-
-    const filterSetter = (filter) => {
-        setFilterParams(filter);
+    const screenSetter = (screen) => {
+        setScreen(screen);
     }
 
-    DataFetcher({dataSetter});
+    useEffect(() => {
+        setScreen(<Home screenSetter={screenSetter}/>);
+    }, []);
 
 
     return (
-        <div className="App">
-            <Filter filterSetter={filterSetter} petData={petDataList}/>
-            <div className={"PetDisplay"}>
-                {
-                    petDataList
-                        .filter((petData) =>
-                            Object.keys(filterParams).every(key => petData[key] === filterParams[key])
-                        )
-                        .map((petData, index) => {
-                            return <PetProfile key={index} petData={petData}/>;
-                        })
-                }
-            </div>
+        <div>
+            {screen}
         </div>
     );
 

@@ -12,6 +12,8 @@ function Filter({filterSetter, petData}) {
     const [genero, setGenero] = useState(null);
     const [petGeneroList, setPetGeneroList] = useState([]);
 
+    const [estado, setEstado] = useState(null);
+    const [petEstadoList, setPetEstadoList] = useState([]);
 
     useEffect(() => {
 
@@ -42,6 +44,15 @@ function Filter({filterSetter, petData}) {
         });
         setPetGeneroList(tempGenreList);
 
+        //Llenar lista de estados
+        const tempEstadoList = [];
+        petData.forEach((pet) => {
+            if (!tempEstadoList.includes(pet.estado)) {
+                tempEstadoList.push(pet.estado);
+            }
+        });
+        setPetEstadoList(tempEstadoList);
+
     }, [petData]);
 
     const applyFilter = () => {
@@ -49,13 +60,14 @@ function Filter({filterSetter, petData}) {
         if (tipo !== null) filter.tipo = tipo;
         if (edad !== null) filter.edad = edad;
         if (genero !== null) filter.genero = genero;
+        if (estado !== null) filter.estado = estado;
         filterSetter(filter);
     }
 
     //Añade trigger cuando cambien los filtros
     useEffect(() => {
         applyFilter();
-    }, [tipo, edad, genero]);
+    }, [tipo, edad, genero, estado]);
 
 
     const changePetType = (e) => {
@@ -70,10 +82,16 @@ function Filter({filterSetter, petData}) {
         setGenero(e.target.value || null);
     }
 
+    const changePetEstado = (e) => {
+        setEstado(e.target.value || null);
+    }
+
+
     const clearFilter = () => {
         setTipo(null);
         setEdad(null);
         setGenero(null);
+        setEstado(null);
         //TODO: make this react coherent
         document.querySelectorAll('.Filtro').forEach(select => select.selectedIndex = 0);
     }
@@ -91,6 +109,7 @@ function Filter({filterSetter, petData}) {
                 }
             </select>
 
+
             <select className={"Filtro"} onChange={changePetAge}>
                 <option className={"Opcion"} value={''}>No filtrar</option>
                 {
@@ -104,6 +123,15 @@ function Filter({filterSetter, petData}) {
                 <option className={"Opcion"} value={''}>No filtrar</option>
                 {
                     petGeneroList.map((age, index) => {
+                        return <option className={"Opcion"} key={index} value={age}>{age}</option>
+                    })
+                }
+            </select>
+
+            <select className={"Filtro"} onChange={changePetEstado}>
+                <option className={"Opcion"} value={''}>No filtrar</option>
+                {
+                    petEstadoList.map((age, index) => {
                         return <option className={"Opcion"} key={index} value={age}>{age}</option>
                     })
                 }

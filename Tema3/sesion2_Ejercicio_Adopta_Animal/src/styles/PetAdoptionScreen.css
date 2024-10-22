@@ -1,0 +1,68 @@
+.HomeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    padding: 20px;
+    width: 10vw;
+    background-color: #9cb84c;
+    border: none;
+    border-radius: 5px;
+}
+
+.PetAdoptionScreen {
+    column-gap: 50px;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin: 20px;
+    padding: 20px;
+}
+
+.PetFullImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.PetCompleteProfile {
+    border-radius: 10px;
+    background-color: #e3ded5;
+}
+
+.PetDisplay {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.PetData {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    background-color: #cccccc;
+    border-radius: 10px;
+    text-align: left;
+
+}
+
+.PetName {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.AdoptForm {
+    display: flex;
+    flex-direction: column;
+    background-color: #cccccc;
+    border-radius: 10px;
+    text-align: left;
+    padding: 20px;
+}
