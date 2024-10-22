@@ -17,7 +17,7 @@ function PetProfile({petData, screenSetter}) {
                     <p>{petData.tipo}</p>
                     <p>{petData.edad}</p>
                     <p>{petData.genero}</p>
-                    <p>Esta esterilizado/a: {petData.esterilizado == 1 ? "Sí" : "No"}</p>
+                    <p>Esta esterilizado/a: {petData.esterilizado === 1 ? "Sí" : "No"}</p>
                 </div>
 
             </div>
