@@ -1,49 +1,27 @@
 import {useForm} from "react-hook-form";
 import FormError from "./FormError";
+import FormularioHabitos from "./FormularioHabitos";
 
 
-function FormularioRegistro() {
+function FormularioRegistro({addFormData, finishForm, changeFormScreen}) {
 
     const {register, formState: {errors}, handleSubmit} = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = (values) => {
 
-        try {
+        addFormData('registro', values);
 
-            fetch('myApi', {
+        changeFormScreen(<FormularioHabitos
+            addFormData={addFormData}
+            finishForm={finishForm}
+            changeFormScreen={changeFormScreen}
+        />);
 
-                method: 'POST',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-
-                body: JSON.stringify(data)
-
-            })
-                .then((response) => {
-
-                    if (response.status === 404) {
-
-                        console.log("URL NOT FOUND");
-                        console.log(data);
-
-                    }
-
-                    console.log(response);
-                });
-
-        } catch (error) {
-
-            console.log("REQUEST FAILED");
-            console.log(data);
-
-        }
     }
 
     return (
         <div>
-            <h1>Gimnasio 123</h1>
+            <h2>Datos personales</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label>Nombre</label>
@@ -77,18 +55,18 @@ function FormularioRegistro() {
                     {errors.telefono?.type === 'maxLength' &&
                         <FormError text={"Teléfono debe tener menos de 20 caracteres"}/>}
                 </div>
-                <div>
-                    <label>Tipos de entrenamiento</label>
-                    <select {...register('entrenamiento', {required: true})}>
-                        <option value="">Ninguno</option>
-                        <option value="NoClaro">No lo tengo claro</option>
-                        <option value="Resistencia">Resistencia</option>
-                        <option value="Fuerza">Fuerza</option>
-                    </select>
-                    <br/>
-                    {errors.entrenamiento?.type === 'required' &&
-                        <FormError text={"El tipo de entrenamiento es requerido"}/>}
-                </div>
+                {/*<div>*/}
+                {/*    <label>Tipos de entrenamiento</label>*/}
+                {/*    <select {...register('entrenamiento', {required: true})}>*/}
+                {/*        <option value="">Ninguno</option>*/}
+                {/*        <option value="NoClaro">No lo tengo claro</option>*/}
+                {/*        <option value="Resistencia">Resistencia</option>*/}
+                {/*        <option value="Fuerza">Fuerza</option>*/}
+                {/*    </select>*/}
+                {/*    <br/>*/}
+                {/*    {errors.entrenamiento?.type === 'required' &&*/}
+                {/*        <FormError text={"El tipo de entrenamiento es requerido"}/>}*/}
+                {/*</div>*/}
                 <div>
                     <label>Dirección</label>
                     <input {...register('direccion', {required: true})} />
