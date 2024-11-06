@@ -1,4 +1,4 @@
-'use client'
+'use ccd Plient'
 
 import Description from "@/app/about/Description";
 import {useState} from "react";
