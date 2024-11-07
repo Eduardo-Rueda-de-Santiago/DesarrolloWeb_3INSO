@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import RecentComics from "./RecentComics";
+import RecentComics from "../components/RecentComics";
 
 function Home() {
 

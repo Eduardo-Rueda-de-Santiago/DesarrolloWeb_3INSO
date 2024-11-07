@@ -1,7 +1,13 @@
 import '../styles/Navbar.css';
-import {Outlet, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-function Navbar() {
+/**
+ * Navigation bar of the aplication.
+ * @param searchContentSetter
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function Navbar({searchContentSetter}) {
 
     return (
         <nav>
@@ -18,12 +24,17 @@ function Navbar() {
                 <Link to={"/Stories"} className={"navbar-option"}>
                     Stories
                 </Link>
+
+                <input className={"navbar-option navbar-search"} onChange={searchContentSetter} type={"text"}
+                       placeholder={"Search"}/>
+
                 <Link to={"/Favourites"} className={"navbar-option navbar-option-favourites"}>
                     Favourites
                 </Link>
             </div>
         </nav>
     );
+
 }
 
 export default Navbar;

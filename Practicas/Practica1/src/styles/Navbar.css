@@ -3,7 +3,7 @@
     z-index: 1;
     top: 0;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-items: center;
     align-items: center;
     width: 100%;
@@ -31,6 +31,17 @@
     transform: scale(1.1);
     background-color: #eaa297;
     font-weight: bold;
+}
+
+.navbar-search {
+    background-color: #bce1dd;
+    display: grid;
+    vertical-align: middle;
+    justify-items: left;
+}
+
+.navbar-option:hover {
+    background-color: #bce1dd;
 }
 
 .navbar-option-favourites {

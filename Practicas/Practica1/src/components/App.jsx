@@ -7,15 +7,16 @@ import Series from "../pages/Series";
 import Stories from "../pages/Stories";
 import Favourites from "../pages/Favourites";
 import NotFound from "../pages/NotFound";
+import ComicDetails from "../pages/ComicDetails";
 
 function App() {
     return (
-
         <BrowserRouter>
             <Routes>
                 <Route path="/">
                     <Route index element={<Home/>}/>
                     <Route path="Comics" element={<Comics/>}/>
+                    <Route path="ComicDetails" element={<ComicDetails/>}/>
                     <Route path="Characters" element={<Characters/>}/>
                     <Route path="Series" element={<Series/>}/>
                     <Route path="Stories" element={<Stories/>}/>
