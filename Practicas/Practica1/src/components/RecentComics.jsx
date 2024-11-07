@@ -16,7 +16,7 @@ function RecentComics() {
     useEffect(() => {
 
         MarvelService.getRecentComics().then(data => {
-            console.log(data);
+            console.log("Effect print", data);
             setComicsData(data);
             setComicsDataUpdated(true);
         });
