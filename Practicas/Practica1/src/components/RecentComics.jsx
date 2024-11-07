@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import MarvelService from "../services/Marvel";
+import '../styles/RecentComics.css'
 
 /**
  * Componente home, lo primero que se muestra al usuario al iniciar la página
@@ -22,9 +23,16 @@ function RecentComics() {
     }, []);
 
     return (
-        <div className={"RecentComics"}>
-            {comicsDataUpdated ? comicsData.map((comicData) => {
-                return <p>{comicData.title}</p>;
+        <div className={"recent-comics"}>
+            {comicsDataUpdated ? comicsData.map((comicData, index) => {
+                return (
+                    <div className={"comic-display"} key={index}>
+                        <img className={"comic-display-image"}
+                             src={comicData.thumbnail.path + "." + comicData.thumbnail.extension}
+                             alt={"Image not found"}/>
+                        <p>{comicData.title}</p>
+                    </div>
+                );
             }) : " Comics recent data is being fetched!"}
         </div>
 

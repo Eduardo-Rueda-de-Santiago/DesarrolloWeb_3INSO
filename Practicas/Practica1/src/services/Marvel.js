@@ -19,7 +19,7 @@ class MarvelService {
 
                         apikey: this.publicKey,
                         orderBy: "modified",
-                        limit: 10,
+                        limit: 100,
 
                     }).toString(), {
 
