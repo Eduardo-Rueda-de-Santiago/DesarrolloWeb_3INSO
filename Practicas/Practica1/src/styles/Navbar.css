@@ -1,4 +1,7 @@
 .navbar-menu {
+    position: fixed;
+    z-index: 1;
+    top: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
@@ -13,7 +16,11 @@
     height: 60%;
     background-color: #dfc37a;
     display: grid;
+    text-decoration: none;
+    vertical-align: middle;
+    justify-items: center;
     align-items: center;
+    color: #000000;
     border-radius: 15px;
     transition: transform 0.5s ease, background-color 0.3s ease;
 

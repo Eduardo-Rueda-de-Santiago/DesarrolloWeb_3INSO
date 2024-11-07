@@ -1,25 +1,26 @@
 import '../styles/Navbar.css';
+import {Outlet, Link} from "react-router-dom";
 
 function Navbar() {
 
     return (
         <nav>
             <div className="navbar-menu">
-                <label className={"navbar-option"}>
+                <Link to={"/Comics"} className={"navbar-option"}>
                     Comics
-                </label>
-                <label className={"navbar-option"}>
+                </Link>
+                <Link to={"/Characters"} className={"navbar-option"}>
                     Characters
-                </label>
-                <label className={"navbar-option"}>
+                </Link>
+                <Link to={"/Series"} l className={"navbar-option"}>
                     Series
-                </label>
-                <label className={"navbar-option"}>
+                </Link>
+                <Link to={"/Stories"} className={"navbar-option"}>
                     Stories
-                </label>
-                <label className={"navbar-option navbar-option-favourites"}>
+                </Link>
+                <Link to={"/Favourites"} className={"navbar-option navbar-option-favourites"}>
                     Favourites
-                </label>
+                </Link>
             </div>
         </nav>
     );

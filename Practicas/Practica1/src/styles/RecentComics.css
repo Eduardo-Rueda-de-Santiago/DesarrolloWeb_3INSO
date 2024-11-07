@@ -37,6 +37,8 @@
     border-radius: 0px 0px 10px 10px;
     position: relative;
     display: grid;
+    vertical-align: middle;
+    justify-items: center;
     align-items: center;
 
 }
