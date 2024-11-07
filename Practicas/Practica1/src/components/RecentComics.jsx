@@ -30,7 +30,7 @@ function RecentComics() {
                         <img className={"comic-display-image"}
                              src={comicData.thumbnail.path + "." + comicData.thumbnail.extension}
                              alt={"Image not found"}/>
-                        <p>{comicData.title}</p>
+                        <p className={"comic-display-name"}>{comicData.title}</p>
                     </div>
                 );
             }) : " Comics recent data is being fetched!"}

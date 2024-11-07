@@ -1,0 +1,35 @@
+.navbar-menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 6vh;
+    background-color: #b8c8c0;
+}
+
+.navbar-option {
+    width: 90%;
+    height: 60%;
+    background-color: #dfc37a;
+    display: grid;
+    align-items: center;
+    border-radius: 15px;
+    transition: transform 0.5s ease, background-color 0.3s ease;
+
+}
+
+.navbar-option:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #eaa297;
+    font-weight: bold;
+}
+
+.navbar-option-favourites {
+    background-color: #afcf6f;
+}
+
+.navbar-option-favourites:hover {
+    background-color: #67df34;
+}
