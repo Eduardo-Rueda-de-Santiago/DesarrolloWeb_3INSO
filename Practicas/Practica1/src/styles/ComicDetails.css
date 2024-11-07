@@ -4,16 +4,33 @@
     width: 90vw;
     height: 90vh;
     border-radius: 20px;
+
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 0.5% 2%;
 }
 
 .comic-details-title {
-
+    color: #e14a4a;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: #61dafb;
+    width: 80%;
+    margin: 1%;
+    border-radius: 10px;
+    padding-left: 1%;
 }
 
 .comic-details-extended {
-
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin-left: 1%;
+    margin-bottom: 1%;
 }
 
 .comic-details-image {
-
+    border-radius: 10px;
+    height: auto;
+    width: auto;
 }

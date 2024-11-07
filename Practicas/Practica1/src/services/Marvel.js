@@ -37,6 +37,28 @@ class MarvelService {
 
         }
     }
+
+    async getComicsCharacters(comicId) {
+        try {
+            return (await fetch(`https://gateway.marvel.com:443/v1/public/comics/${comicId}/characters?` +
+                    new URLSearchParams({
+                        apikey: this.publicKey,
+                    }).toString(), {
+
+                    method: "GET",
+
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+            ).data.results;
+
+        } catch (error) {
+
+            console.log(`ERROR getting characters from comic ${comicId}: `, error);
+
+        }
+    }
 }
 
 export default new MarvelService();
