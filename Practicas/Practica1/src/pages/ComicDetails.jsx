@@ -32,23 +32,22 @@ function ComicDetails() {
                          src={comicDetails.thumbnail.path + "." + comicDetails.thumbnail.extension}
                          alt={"Image not found"}
                     />
-                    <div className={"comic-details-description"}>
-                        <div className={"comic-details-summary"}>
-                            <p>Summary</p>
-                            {comicDetails.description}
-                        </div>
-                        <div className={"comic-details-characters"}>
-                            {comicCharactersUpdated ? comicCharacters.map((characterData, index) => {
-                                return (
-                                    <div key={index} className={"comic-details-character"}>
-                                        <img className={"comic-details-character-image"}
-                                             src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
-                                        <label>{characterData.name}</label>
-                                    </div>
-                                );
-                            }) : "Getting characters data"}
-                        </div>
+                    <div className={"comic-details-summary"}>
+                        <p>Summary</p>
+                        {comicDetails.description}
                     </div>
+                    <div className={"comic-details-characters"}>
+                        {comicCharactersUpdated ? comicCharacters.map((characterData, index) => {
+                            return (
+                                <div key={index} className={"comic-details-character"}>
+                                    <img className={"comic-details-character-image"}
+                                         src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
+                                    <label>{characterData.name}</label>
+                                </div>
+                            );
+                        }) : "Getting characters data"}
+                    </div>
+                    {/*</div>*/}
                 </div>
             </div>
         </div>
