@@ -1,7 +1,13 @@
+import Navbar from "../components/Navbar";
+import RecentComics from "../components/RecentComics";
+
 function Comics() {
 
     return (
-        <p>Comics page</p>
+        <>
+            <Navbar/>
+            <RecentComics/>
+        </>
     );
 }
 

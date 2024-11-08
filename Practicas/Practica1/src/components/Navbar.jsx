@@ -12,7 +12,7 @@ function Navbar({searchContentSetter}) {
     return (
         <nav>
             <div className="navbar-menu">
-                <Link to={"/Comics"} className={"navbar-option"}>
+                <Link to={"/"} className={"navbar-option"}>
                     Comics
                 </Link>
                 <Link to={"/Characters"} className={"navbar-option"}>

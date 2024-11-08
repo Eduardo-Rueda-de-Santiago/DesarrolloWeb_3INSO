@@ -15,12 +15,25 @@ function ComicDetails() {
 
         MarvelService.getComicsCharacters(comicDetails.id).then(
             data => {
-                console.log(data);
                 setComicCharacters(data);
                 setComicCharactersUpdated(true);
             });
 
     }, []);
+
+    const addFavourite = () => {
+        const localStorageFavouriteComics = localStorage.favoriteComics;
+        let favouriteComics;
+        if (localStorageFavouriteComics) {
+            favouriteComics = new Map(JSON.parse(localStorageFavouriteComics));
+        } else {
+            favouriteComics = new Map();
+        }
+        favouriteComics.set(comicDetails.id, comicDetails);
+        localStorage.favouriteComics = JSON.stringify(Array.from(favouriteComics.entries()));
+
+        console.log(localStorage.getItem("favouriteComics"));
+    }
 
     return (
         <div>
@@ -32,9 +45,13 @@ function ComicDetails() {
                          src={comicDetails.thumbnail.path + "." + comicDetails.thumbnail.extension}
                          alt={"Image not found"}
                     />
-                    <div className={"comic-details-summary"}>
-                        <p>Summary</p>
-                        {comicDetails.description}
+                    <div className={"comic-details-description"}>
+                        <div className={"comic-details-summary"}>
+                            <h2>Summary</h2>
+                            <br/>
+                            {comicDetails.description}
+                        </div>
+                        <button onClick={addFavourite} className={"comic-details-add-favourite"}>Add favourite</button>
                     </div>
                     <div className={"comic-details-characters"}>
                         {comicCharactersUpdated ? comicCharacters.map((characterData, index) => {

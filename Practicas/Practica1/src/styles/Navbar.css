@@ -35,6 +35,7 @@
 
 .navbar-search {
     background-color: #bce1dd;
+    border: none;
     display: grid;
     vertical-align: middle;
     justify-items: left;

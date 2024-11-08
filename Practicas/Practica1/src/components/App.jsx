@@ -1,6 +1,5 @@
 import '../styles/App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from "../pages/Home";
 import Comics from "../pages/Comics";
 import Characters from "../pages/Characters";
 import Series from "../pages/Series";
@@ -14,8 +13,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/">
-                    <Route index element={<Home/>}/>
-                    <Route path="Comics" element={<Comics/>}/>
+                    <Route index element={<Comics/>}/>
                     <Route path="ComicDetails" element={<ComicDetails/>}/>
                     <Route path="Characters" element={<Characters/>}/>
                     <Route path="Series" element={<Series/>}/>
