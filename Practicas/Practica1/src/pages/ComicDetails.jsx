@@ -22,7 +22,7 @@ function ComicDetails() {
     }, []);
 
     const addFavourite = () => {
-        const localStorageFavouriteComics = localStorage.favoriteComics;
+        const localStorageFavouriteComics = localStorage.favouriteComics;
         let favouriteComics;
         if (localStorageFavouriteComics) {
             favouriteComics = new Map(JSON.parse(localStorageFavouriteComics));
@@ -31,8 +31,6 @@ function ComicDetails() {
         }
         favouriteComics.set(comicDetails.id, comicDetails);
         localStorage.favouriteComics = JSON.stringify(Array.from(favouriteComics.entries()));
-
-        console.log(localStorage.getItem("favouriteComics"));
     }
 
     return (
