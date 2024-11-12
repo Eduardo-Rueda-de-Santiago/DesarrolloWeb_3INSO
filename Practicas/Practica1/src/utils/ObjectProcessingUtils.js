@@ -1,5 +1,9 @@
 function getNestedValue(obj, path) {
-    return path.split('.').reduce((acc, key) => acc && acc[key], obj);
+
+    if (path)
+        return path.split('.').reduce((acc, key) => acc && acc[key], obj);
+    else
+        return "";
 }
 
 export {getNestedValue};

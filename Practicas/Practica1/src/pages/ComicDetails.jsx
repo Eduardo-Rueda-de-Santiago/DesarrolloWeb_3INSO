@@ -30,6 +30,7 @@ function ComicDetails() {
             favouriteComics = new Map();
         }
         favouriteComics.set(comicDetails.id, comicDetails);
+        console.log(favouriteComics)
         localStorage.favouriteComics = JSON.stringify(Array.from(favouriteComics.entries()));
     }
 

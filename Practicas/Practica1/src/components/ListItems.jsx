@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import MarvelService from "../services/Marvel";
 import {useNavigate} from "react-router-dom";
+import '../styles/RecentComics.css'
+import {getNestedValue} from "../utils/ObjectProcessingUtils";
 
 /**
  * Lista de items que se muestran en una página.
@@ -9,68 +10,56 @@ import {useNavigate} from "react-router-dom";
  */
 function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
-    const [comicsData, setComicsData] = useState(null);
-    const [comicsLoaded, setComicsLoaded] = useState(false);
+    const [data, setData] = useState(null);
+    const [dataItemsLoaded, setDataItemsLoaded] = useState(0);
 
-    const thing = {
-        thing1: {
-            thing2: {
-                message: "Hello world"
-            }
+    const addData = async () => {
+
+        const queryResult = await query(dataItemsLoaded);
+
+        if (!data) {
+
+            setData(queryResult);
+
+        } else {
+
+            const newData = [...data];
+            newData.push(...queryResult);
+            setData(newData);
+
         }
-    };
 
+        setDataItemsLoaded(dataItemsLoaded + 100);
 
-    console.log(getNestedValue(thing, "thing1.thing2.message")); // Output: Hello world
-
-    // const addComics = () => {
-    //
-    //     new MarvelService().getRecentComics(comicsLoaded).then(data => {
-    //         console.log(data);
-    //         let comicsDataCopy = comicsData;
-    //         if (comicsDataCopy === null)
-    //             comicsDataCopy = [];
-    //         comicsDataCopy.push(data);
-    //         setComicsData(comicsDataCopy);
-    //         setComicsLoaded(comicsLoaded + 100);
-    //         console.log("comics loaded", comicsLoaded);
-    //     });
-
-    // }
-
-    // useEffect(() => {
-    //     setComicsLoaded(comicsLoaded + 100);
-    // }, [comicsData]);
+    }
 
     useEffect(() => {
-        // addComics();
-        new MarvelService().getRecentComics(0).then(data => {
-            setComicsData(data);
-            setComicsLoaded(true);
-        });
+        addData();
     }, []);
 
     const navigate = useNavigate();
 
     return (
         <div className={"recent-comics"}>
-            {comicsLoaded ? comicsData.map((comicData, index) => {
+
+            {dataItemsLoaded > 0 ? data.map((itemData, index) => {
                 return (
                     <div
                         className={"comic-display"}
                         key={index}
                         onClick={() => {
-                            navigate('/ComicDetails', {state: comicData});
+                            navigate(detailsNavigatePage, {state: itemData});
                         }}
                     >
                         <img className={"comic-display-image"}
-                             src={comicData.thumbnail.path + "." + comicData.thumbnail.extension}
+                             src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
                              alt={"Image not found"}
                         />
-                        <p className={"comic-display-name"}>{comicData.title}</p>
+                        <p className={"comic-display-name"}>{getNestedValue(itemData, namePath)}</p>
                     </div>
                 );
             }) : " Comics recent data is being fetched!"}
+            <button onClick={addData}>Load more</button>
         </div>
 
     );
