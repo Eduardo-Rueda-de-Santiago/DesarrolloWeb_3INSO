@@ -13,7 +13,7 @@ function ComicDetails() {
 
     useEffect(() => {
 
-        MarvelService.getComicsCharacters(comicDetails.id).then(
+        new MarvelService().getComicsCharacters(comicDetails.id).then(
             data => {
                 setComicCharacters(data);
                 setComicCharactersUpdated(true);

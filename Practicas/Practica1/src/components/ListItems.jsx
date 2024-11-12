@@ -1,17 +1,27 @@
 import {useEffect, useState} from "react";
 import MarvelService from "../services/Marvel";
-import '../styles/RecentComics.css'
 import {useNavigate} from "react-router-dom";
 
 /**
- * Componente home, lo primero que se muestra al usuario al iniciar la página
+ * Lista de items que se muestran en una página.
  * @returns {JSX.Element}
  * @constructor
  */
-function RecentComics() {
+function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
     const [comicsData, setComicsData] = useState(null);
     const [comicsLoaded, setComicsLoaded] = useState(false);
+
+    const thing = {
+        thing1: {
+            thing2: {
+                message: "Hello world"
+            }
+        }
+    };
+
+
+    console.log(getNestedValue(thing, "thing1.thing2.message")); // Output: Hello world
 
     // const addComics = () => {
     //
@@ -64,6 +74,7 @@ function RecentComics() {
         </div>
 
     );
+
 }
 
-export default RecentComics;
+export default ListItems;

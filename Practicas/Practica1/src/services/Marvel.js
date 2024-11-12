@@ -10,7 +10,7 @@ class MarvelService {
 
     }
 
-    async getRecentComics() {
+    async getRecentComics(offset = 0) {
 
         try {
 
@@ -20,6 +20,7 @@ class MarvelService {
                         apikey: this.publicKey,
                         orderBy: "modified",
                         limit: 100,
+                        offset: offset,
 
                     }).toString(), {
 
@@ -59,6 +60,7 @@ class MarvelService {
 
         }
     }
+
 }
 
-export default new MarvelService();
+export default MarvelService;

@@ -1,12 +1,16 @@
 import Navbar from "../components/Navbar";
-import RecentComics from "../components/RecentComics";
+import ListItems from "../components/ListItems";
 
 function Comics() {
+
+    const query = (number) => {
+
+    }
 
     return (
         <>
             <Navbar/>
-            <RecentComics/>
+            <ListItems/>
         </>
     );
 }
