@@ -3,7 +3,7 @@
     z-index: 1;
     top: 0;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
     width: 100%;

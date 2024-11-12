@@ -42,24 +42,28 @@ function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbna
     return (
         <div className={"recent-comics"}>
 
-            {dataItemsLoaded > 0 ? data.map((itemData, index) => {
-                return (
-                    <div
-                        className={"comic-display"}
-                        key={index}
-                        onClick={() => {
-                            navigate(detailsNavigatePage, {state: itemData});
-                        }}
-                    >
-                        <img className={"comic-display-image"}
-                             src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
-                             alt={"Image not found"}
-                        />
-                        <p className={"comic-display-name"}>{getNestedValue(itemData, namePath)}</p>
-                    </div>
-                );
-            }) : " Comics recent data is being fetched!"}
-            <button onClick={addData}>Load more</button>
+            {dataItemsLoaded > 0 ?
+                <>
+                    {data.map((itemData, index) => {
+                        return (
+                            <div
+                                className={"comic-display"}
+                                key={index}
+                                onClick={() => {
+                                    navigate(detailsNavigatePage, {state: itemData});
+                                }}
+                            >
+                                <img className={"comic-display-image"}
+                                     src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
+                                     alt={"Image not found"}
+                                />
+                                <p className={"comic-display-name"}>{getNestedValue(itemData, namePath)}</p>
+                            </div>
+                        );
+                    })}
+                    <button onClick={addData}>Load more</button>
+                </>
+                : " Data is being fetched!"}
         </div>
 
     );

@@ -21,9 +21,6 @@ function Navbar({searchContentSetter}) {
                 <Link to={"/Series"} l className={"navbar-option"}>
                     Series
                 </Link>
-                <Link to={"/Stories"} className={"navbar-option"}>
-                    Stories
-                </Link>
 
                 <input className={"navbar-option navbar-search"} onChange={searchContentSetter} type={"text"}
                        placeholder={"Search"}/>

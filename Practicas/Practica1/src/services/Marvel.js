@@ -39,6 +39,64 @@ class MarvelService {
         }
     }
 
+    async getRecentCharacters(offset = 0) {
+
+        try {
+
+            return (await fetch("https://gateway.marvel.com:443/v1/public/characters?" +
+                    new URLSearchParams({
+
+                        apikey: this.publicKey,
+                        orderBy: "modified",
+                        limit: 100,
+                        offset: offset,
+
+                    }).toString(), {
+
+                    method: "GET",
+
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+            ).data.results;
+
+        } catch (error) {
+
+            console.log("ERROR getting recent comics: ", error);
+
+        }
+    }
+
+    async getRecentSeries(offset = 0) {
+
+        try {
+
+            return (await fetch("https://gateway.marvel.com:443/v1/public/series?" +
+                    new URLSearchParams({
+
+                        apikey: this.publicKey,
+                        orderBy: "modified",
+                        limit: 100,
+                        offset: offset,
+
+                    }).toString(), {
+
+                    method: "GET",
+
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+            ).data.results;
+
+        } catch (error) {
+
+            console.log("ERROR getting recent comics: ", error);
+
+        }
+    }
+
     async getComicsCharacters(comicId) {
         try {
             return (await fetch(`https://gateway.marvel.com:443/v1/public/comics/${comicId}/characters?` +

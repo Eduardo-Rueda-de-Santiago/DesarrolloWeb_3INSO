@@ -1,12 +1,11 @@
 import '../styles/App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Comics from "../pages/Comics";
-import Characters from "../pages/Characters";
-import Series from "../pages/Series";
-import Stories from "../pages/Stories";
-import Favourites from "../pages/Favourites";
+import Comics from "../pages/exploring/Comics";
+import Characters from "../pages/exploring/Characters";
+import Series from "../pages/exploring/Series";
+import Favourites from "../pages/exploring/Favourites";
 import NotFound from "../pages/NotFound";
-import ComicDetails from "../pages/ComicDetails";
+import ComicDetails from "../pages/Details/ComicDetails";
 
 function App() {
     return (
@@ -14,11 +13,13 @@ function App() {
             <Routes>
                 <Route path="/">
                     <Route index element={<Comics/>}/>
-                    <Route path="ComicDetails" element={<ComicDetails/>}/>
                     <Route path="Characters" element={<Characters/>}/>
                     <Route path="Series" element={<Series/>}/>
-                    <Route path="Stories" element={<Stories/>}/>
                     <Route path="Favourites" element={<Favourites/>}/>
+
+                    <Route path="ComicDetails" element={<ComicDetails/>}/>
+
+
                     <Route path="*" element={<NotFound/>}/>
                 </Route>
             </Routes>

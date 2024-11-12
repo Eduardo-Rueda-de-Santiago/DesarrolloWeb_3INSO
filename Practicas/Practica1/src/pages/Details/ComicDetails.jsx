@@ -1,8 +1,8 @@
 import {useLocation} from 'react-router-dom';
-import '../styles/ComicDetails.css';
-import MarvelService from "../services/Marvel";
+import '../../styles/ComicDetails.css';
+import MarvelService from "../../services/Marvel";
 import {useEffect, useState} from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 function ComicDetails() {
 

@@ -1,8 +1,8 @@
-import Navbar from "../components/Navbar";
-import ListItems from "../components/ListItems";
-import MarvelService from "../services/Marvel";
+import MarvelService from "../../services/Marvel";
+import Navbar from "../../components/Navbar";
+import ListItems from "../../components/ListItems";
 
-function Comics() {
+function Characters() {
 
     const query = async (offset) => {
 
@@ -10,7 +10,7 @@ function Comics() {
 
         try {
 
-            queryResults = new MarvelService().getRecentComics(offset);
+            queryResults = new MarvelService().getRecentCharacters(offset);
 
         } catch (exception) {
 
@@ -27,12 +27,13 @@ function Comics() {
             <ListItems
                 query={query}
                 detailsNavigatePage={'/ComicDetails'}
-                namePath={'title'}
+                namePath={'name'}
                 thumbnailPath={'thumbnail.path'}
                 thumbnailExtensionPath={'thumbnail.extension'}
             />
         </>
     );
+
 }
 
-export default Comics;
+export default Characters;
