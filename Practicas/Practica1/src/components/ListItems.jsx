@@ -1,7 +1,18 @@
+/**
+ * External libs
+ */
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import '../styles/RecentComics.css'
+
+/**
+ * Internal libs
+ */
 import {getNestedValue} from "../utils/ObjectProcessingUtils";
+
+/**
+ * Styles
+ */
+import '../styles/ListItems.css'
 
 /**
  * Lista de items que se muestran en una página.
@@ -40,30 +51,37 @@ function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbna
     const navigate = useNavigate();
 
     return (
-        <div className={"recent-comics"}>
+        <div className={"items-page"}>
+            <div className={"items-list"}>
 
+                {dataItemsLoaded > 0 ?
+                    <>
+                        {data.map((itemData, index) => {
+                            return (
+                                <div
+                                    className={"items-display"}
+                                    key={index}
+                                    onClick={() => {
+                                        navigate(detailsNavigatePage, {state: itemData});
+                                    }}
+                                >
+                                    <img className={"items-display-image"}
+                                         src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
+                                         alt={"Image not found"}
+                                    />
+                                    <p className={"items-display-name"}>{getNestedValue(itemData, namePath)}</p>
+                                </div>
+                            );
+                        })}
+                    </>
+                    : " Data is being fetched!"}
+
+
+            </div>
             {dataItemsLoaded > 0 ?
-                <>
-                    {data.map((itemData, index) => {
-                        return (
-                            <div
-                                className={"comic-display"}
-                                key={index}
-                                onClick={() => {
-                                    navigate(detailsNavigatePage, {state: itemData});
-                                }}
-                            >
-                                <img className={"comic-display-image"}
-                                     src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
-                                     alt={"Image not found"}
-                                />
-                                <p className={"comic-display-name"}>{getNestedValue(itemData, namePath)}</p>
-                            </div>
-                        );
-                    })}
-                    <button onClick={addData}>Load more</button>
-                </>
-                : " Data is being fetched!"}
+                <button className={"items-load-more-button"} onClick={addData}>Load more</button>
+                : <></>
+            }
         </div>
 
     );

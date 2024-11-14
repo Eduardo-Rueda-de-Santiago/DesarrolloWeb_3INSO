@@ -21,6 +21,7 @@ function Comics() {
         return queryResults;
     }
 
+
     return (
         <>
             <Navbar/>
