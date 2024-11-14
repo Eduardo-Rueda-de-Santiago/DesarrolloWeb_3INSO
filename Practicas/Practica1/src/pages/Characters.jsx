@@ -1,6 +1,6 @@
-import MarvelService from "../../services/Marvel";
-import Navbar from "../../components/Navbar";
-import ListItems from "../../components/ListItems";
+import MarvelService from "../services/Marvel";
+import Navbar from "../components/Navbar";
+import ListItems from "../components/ListItems";
 
 function Characters() {
 

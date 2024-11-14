@@ -19,7 +19,7 @@ import '../styles/ListItems.css'
  * @returns {JSX.Element}
  * @constructor
  */
-function ListItems({query, charactersQuery, favouriteCategory, namePath, thumbnailPath, thumbnailExtensionPath}) {
+function ListItems({query, detailsQuery, favouriteCategory, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
     const [data, setData] = useState(null);
     const [dataItemsLoaded, setDataItemsLoaded] = useState(0);
@@ -87,7 +87,7 @@ function ListItems({query, charactersQuery, favouriteCategory, namePath, thumbna
             {selectedItemData && (
                 <ItemDetails
                     itemData={selectedItemData}
-                    charactersQuery={charactersQuery}
+                    detailsQuery={detailsQuery}
                     favouriteCategory={favouriteCategory}
                     onClose={closeDialog}
                 />

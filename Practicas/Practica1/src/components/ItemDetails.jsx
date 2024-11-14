@@ -5,10 +5,11 @@ import {useEffect, useRef, useState} from "react";
  * @param itemData Datos del item a mostrar
  * @param detailsQuery Query del item para pedir los detalles
  * @param onClose Cómo indicar que el diálogo se cierra.
+ * @param favouriteCategory La categoría en la que se guardan los favoritos.
  * @returns {JSX.Element}
  * @constructor
  */
-function ItemDetails({itemData, charactersQuery, favouriteCategory, onClose}) {
+function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
 
     // Cosas de estados
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -66,7 +67,7 @@ function ItemDetails({itemData, charactersQuery, favouriteCategory, onClose}) {
         localStorage[favouriteCategory] = JSON.stringify(Array.from(favouriteComics.entries()));
 
         updateFavouriteButton();
-        
+
     }
 
     // Quitar favorito
@@ -117,7 +118,7 @@ function ItemDetails({itemData, charactersQuery, favouriteCategory, onClose}) {
         }
 
         // Pedir los personajes al tener el item que se quiere detallar
-        charactersQuery(itemData.id).then(
+        detailsQuery(itemData.id).then(
             data => {
                 setItemCharacters(data);
                 setItemsCharactersUpdated(true);

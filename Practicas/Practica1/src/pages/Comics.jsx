@@ -1,6 +1,6 @@
-import Navbar from "../../components/Navbar";
-import ListItems from "../../components/ListItems";
-import MarvelService from "../../services/Marvel";
+import Navbar from "../components/Navbar";
+import ListItems from "../components/ListItems";
+import MarvelService from "../services/Marvel";
 
 function Comics() {
 
@@ -43,7 +43,7 @@ function Comics() {
             <Navbar/>
             <ListItems
                 query={query}
-                charactersQuery={charactersQuery}
+                detailsQuery={charactersQuery}
                 favouriteCategory={'comics'}
                 namePath={'title'}
                 thumbnailPath={'thumbnail.path'}
