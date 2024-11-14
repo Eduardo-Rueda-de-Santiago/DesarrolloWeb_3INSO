@@ -21,13 +21,30 @@ function Comics() {
         return queryResults;
     }
 
+    const charactersQuery = async (comicId) => {
+
+        let queryResults = null;
+
+        try {
+
+            queryResults = new MarvelService().getComicsCharacters(comicId);
+
+        } catch (exception) {
+
+            console.error(exception);
+
+        }
+
+        return queryResults;
+    }
 
     return (
         <>
             <Navbar/>
             <ListItems
                 query={query}
-                detailsNavigatePage={'/ComicDetails'}
+                charactersQuery={charactersQuery}
+                favouriteCategory={'comics'}
                 namePath={'title'}
                 thumbnailPath={'thumbnail.path'}
                 thumbnailExtensionPath={'thumbnail.extension'}

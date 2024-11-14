@@ -2,12 +2,11 @@ import '../styles/Navbar.css';
 import {Link} from "react-router-dom";
 
 /**
- * Navigation bar of the aplication.
- * @param searchContentSetter
+ * Navigation bar of the application.
  * @returns {JSX.Element}
  * @constructor
  */
-function Navbar({searchContentSetter}) {
+function Navbar() {
 
     return (
         <nav>

@@ -1,33 +1,173 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
-function ItemDetails() {
+/**
+ * Componente para mostrar los detalles de un item de la API
+ * @param itemData Datos del item a mostrar
+ * @param detailsQuery Query del item para pedir los detalles
+ * @param onClose Cómo indicar que el diálogo se cierra.
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function ItemDetails({itemData, charactersQuery, favouriteCategory, onClose}) {
 
-    const dialog = document.querySelector("dialog");
-    const showButton = document.querySelector("dialog + button");
-    const closeButton = document.querySelector("dialog button");
+    // Cosas de estados
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [itemCharacters, setItemCharacters] = useState({});
+    const [itemCharactersUpdated, setItemsCharactersUpdated] = useState(false);
+    const [favouriteButton, setFavouriteButton] = useState(<></>);
 
-    const dialogRef = useRef(null); // Reference to the dialog element
-    const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog visibility
+    // Ref al dialog
+    const dialogRef = useRef(null);
 
-    // Function to show the dialog
-    const showDialog = () => {
-        setIsDialogOpen(true);
-        dialogRef.current?.showModal();
-    };
+    // Es favorito?
+    const isFavourite = () => {
 
-    // Function to close the dialog
+        let isFavourite = false;
+
+        const localStorageFavouritesData = localStorage[favouriteCategory];
+
+        let favouritesData;
+
+        if (localStorageFavouritesData) {
+
+            favouritesData = new Map(JSON.parse(localStorageFavouritesData));
+
+            if (favouritesData.has(itemData.id)) {
+
+                isFavourite = true;
+
+            }
+
+        }
+
+        return isFavourite;
+
+    }
+
+    // Añadir a favorito
+    const addFavourite = () => {
+
+        const localStorageFavouritesData = localStorage[favouriteCategory];
+
+        let favouriteComics;
+
+        if (localStorageFavouritesData) {
+
+            favouriteComics = new Map(JSON.parse(localStorageFavouritesData));
+
+        } else {
+
+            favouriteComics = new Map();
+
+        }
+
+        favouriteComics.set(itemData.id, itemData);
+
+        localStorage[favouriteCategory] = JSON.stringify(Array.from(favouriteComics.entries()));
+
+        updateFavouriteButton();
+        
+    }
+
+    // Quitar favorito
+    const removeFavourite = () => {
+
+        const localStorageFavouritesData = localStorage[favouriteCategory];
+
+        let favouriteComics;
+
+        if (localStorageFavouritesData) {
+
+            favouriteComics = new Map(JSON.parse(localStorageFavouritesData));
+
+            favouriteComics.delete(itemData.id);
+
+            localStorage[favouriteCategory] = JSON.stringify(Array.from(favouriteComics.entries()));
+
+        }
+
+        updateFavouriteButton();
+
+    }
+
+    // Actualizar el botón de favoritos
+    const updateFavouriteButton = () => {
+
+        if (isFavourite()) {
+
+            setFavouriteButton(<button onClick={removeFavourite}>Quitar favorito</button>);
+
+        } else {
+
+            setFavouriteButton(
+                <button onClick={addFavourite} className={"comic-details-add-favourite"}>Add
+                    favourite</button>
+            );
+
+        }
+
+    }
+
+    // Muestra el modal en cuanto se pasa un item
+    useEffect(() => {
+
+        if (itemData) {
+            setIsDialogOpen(true);
+            dialogRef.current?.showModal();
+        }
+
+        // Pedir los personajes al tener el item que se quiere detallar
+        charactersQuery(itemData.id).then(
+            data => {
+                setItemCharacters(data);
+                setItemsCharactersUpdated(true);
+            });
+
+        updateFavouriteButton();
+
+    }, [itemData]);
+
+    // Cierra el modal
     const closeDialog = () => {
         setIsDialogOpen(false);
         dialogRef.current?.close();
+        onClose();
     };
+
     return (
-        <div>
-            <dialog style={{width: "100%"}} ref={dialogRef}>
-                <p>This is a dialog!</p>
-                <button onClick={closeDialog}>X</button>
-            </dialog>
-            <button onClick={showDialog}>Show the dialog</button>
-        </div>
+        <dialog ref={dialogRef} open={isDialogOpen}>
+            <div className={"comic-detailed-card"}>
+                <label className={"comic-details-title"}>{itemData.title}</label>
+                <div className={"comic-details-extended"}>
+                    <img className={"comic-details-image"}
+                         src={itemData.thumbnail.path + "." + itemData.thumbnail.extension}
+                         alt={"Image not found"}
+                    />
+                    <div className={"comic-details-description"}>
+                        <div className={"comic-details-summary"}>
+                            <h2>Summary</h2>
+                            <br/>
+                            {itemData.description}
+                        </div>
+
+                        {favouriteButton}
+
+                    </div>
+                    <div className={"comic-details-characters"}>
+                        {itemCharactersUpdated ? itemCharacters.map((characterData, index) => {
+                            return (
+                                <div key={index} className={"comic-details-character"}>
+                                    <img className={"comic-details-character-image"}
+                                         src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
+                                    <label>{characterData.name}</label>
+                                </div>
+                            );
+                        }) : "Getting characters data"}
+                    </div>
+                </div>
+            </div>
+            <button onClick={closeDialog}>Close</button>
+        </dialog>
     );
 }
 

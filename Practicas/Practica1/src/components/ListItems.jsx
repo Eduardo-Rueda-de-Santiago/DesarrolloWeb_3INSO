@@ -2,12 +2,12 @@
  * External libs
  */
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 /**
  * Internal libs
  */
 import {getNestedValue} from "../utils/ObjectProcessingUtils";
+import ItemDetails from "./ItemDetails";
 
 /**
  * Styles
@@ -19,10 +19,11 @@ import '../styles/ListItems.css'
  * @returns {JSX.Element}
  * @constructor
  */
-function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbnailExtensionPath}) {
+function ListItems({query, charactersQuery, favouriteCategory, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
     const [data, setData] = useState(null);
     const [dataItemsLoaded, setDataItemsLoaded] = useState(0);
+    const [selectedItemData, setSelectedItemData] = useState(null); // To track selected item
 
     const addData = async () => {
 
@@ -44,11 +45,13 @@ function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbna
 
     }
 
+    const closeDialog = () => {
+        setSelectedItemData(null);
+    }
+
     useEffect(() => {
         addData();
     }, []);
-
-    const navigate = useNavigate();
 
     return (
         <div className={"items-page"}>
@@ -61,9 +64,8 @@ function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbna
                                 <div
                                     className={"items-display"}
                                     key={index}
-                                    onClick={() => {
-                                        navigate(detailsNavigatePage, {state: itemData});
-                                    }}
+                                    onClick={() => setSelectedItemData(itemData)} // Set selected item data
+
                                 >
                                     <img className={"items-display-image"}
                                          src={`${getNestedValue(itemData, thumbnailPath)}.${getNestedValue(itemData, thumbnailExtensionPath)}`}
@@ -82,6 +84,14 @@ function ListItems({query, detailsNavigatePage, namePath, thumbnailPath, thumbna
                 <button className={"items-load-more-button"} onClick={addData}>Load more</button>
                 : <></>
             }
+            {selectedItemData && (
+                <ItemDetails
+                    itemData={selectedItemData}
+                    charactersQuery={charactersQuery}
+                    favouriteCategory={favouriteCategory}
+                    onClose={closeDialog}
+                />
+            )}
         </div>
 
     );
