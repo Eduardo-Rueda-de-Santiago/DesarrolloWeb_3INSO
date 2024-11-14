@@ -1,4 +1,12 @@
+/**
+ * Internal libs
+ */
 import {useEffect, useRef, useState} from "react";
+
+/**
+ * Styles
+ */
+import '../styles/ItemDetails.css'
 
 /**
  * Componente para mostrar los detalles de un item de la API
@@ -136,7 +144,7 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
     };
 
     return (
-        <dialog ref={dialogRef} open={isDialogOpen}>
+        <dialog className={"item-dialogue"} ref={dialogRef} open={isDialogOpen}>
             <div className={"comic-detailed-card"}>
                 <label className={"comic-details-title"}>{itemData.title}</label>
                 <div className={"comic-details-extended"}>
