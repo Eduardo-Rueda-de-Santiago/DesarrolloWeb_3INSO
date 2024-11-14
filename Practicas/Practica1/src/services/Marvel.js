@@ -119,6 +119,28 @@ class MarvelService {
         }
     }
 
+    async getSeriesCharacters(seriesId) {
+        try {
+            return (await fetch(`https://gateway.marvel.com:443/v1/public/series/${seriesId}/characters?` +
+                    new URLSearchParams({
+                        apikey: this.publicKey,
+                    }).toString(), {
+
+                    method: "GET",
+
+                })
+                    .then((response) => {
+                        return response.json();
+                    })
+            ).data.results;
+
+        } catch (error) {
+
+            console.log(`ERROR getting characters from series ${seriesId}: `, error);
+
+        }
+    }
+
 }
 
 export default MarvelService;
