@@ -9,7 +9,6 @@ import Favourites from "../services/Favourites";
  */
 import '../styles/ItemDetails.css'
 import MarvelService from "../services/Marvel";
-import CharacterDetails from "./CharacterDetails";
 
 /**
  * Componente para mostrar los detalles los comics
@@ -18,20 +17,15 @@ import CharacterDetails from "./CharacterDetails";
  * @returns {JSX.Element}
  * @constructor
  */
-function ComicDetails({itemData, onClose}) {
+function CharacterDetails({itemData, onClose}) {
 
     // Cosas de estados
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [itemCharacters, setItemCharacters] = useState({});
     const [itemCharactersUpdated, setItemsCharactersUpdated] = useState(false);
     const [favouriteButton, setFavouriteButton] = useState(<></>);
-    const [selectedItemData, setSelectedItemData] = useState(null); // To track selected item
 
-    const closeCharacterDialog = () => {
-        setSelectedItemData(null);
-    }
-
-    const favouritesService = new Favourites('comics');
+    const favouritesService = new Favourites('characters');
 
     // Ref al dialog
     const dialogRef = useRef(null);
@@ -68,13 +62,13 @@ function ComicDetails({itemData, onClose}) {
     }
 
     // Query para coger los personajes del comic
-    const comicCharactersQuery = async (comicId) => {
+    const characterSeriesQuery = async (comicId) => {
 
         let queryResults = null;
 
         try {
 
-            queryResults = new MarvelService().getComicsCharacters(comicId);
+            queryResults = new MarvelService().getCharacterSeries(comicId);
 
         } catch (exception) {
 
@@ -94,7 +88,7 @@ function ComicDetails({itemData, onClose}) {
         }
 
         // Pedir los personajes al tener el item que se quiere detallar
-        comicCharactersQuery(itemData.id).then(
+        characterSeriesQuery(itemData.id).then(
             data => {
                 setItemCharacters(data);
                 setItemsCharactersUpdated(true);
@@ -111,10 +105,11 @@ function ComicDetails({itemData, onClose}) {
         onClose();
     };
 
+
     return (
         <dialog className={"item-dialogue"} ref={dialogRef} open={isDialogOpen}>
             <div className={"item-detailed-card"}>
-                <label className={"item-details-title"}>{itemData.title}</label>
+                <label className={"item-details-title"}>{itemData.name}</label>
                 <div className={"item-details-extended"}>
                     <img className={"item-details-image"}
                          src={itemData.thumbnail.path + "." + itemData.thumbnail.extension}
@@ -122,7 +117,7 @@ function ComicDetails({itemData, onClose}) {
                     />
 
                     <div className={"item-details-summary"}>
-                        <h2 style={{textAlign: "center"}}>Summary</h2>
+                        <h2 style={{textAlign: "center"}}>Description</h2>
                         <br/>
                         {itemData.description}
                     </div>
@@ -132,12 +127,10 @@ function ComicDetails({itemData, onClose}) {
                         <div className={"item-details-listed-elements"}>
                             {itemCharactersUpdated ? itemCharacters.map((characterData, index) => {
                                 return (
-                                    <div key={index} className={"item-details-element"}
-                                         onClick={() => setSelectedItemData(characterData)} // Set selected item data
-                                    >
+                                    <div key={index} className={"item-details-element"}>
                                         <img className={"item-details-element-image"}
                                              src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
-                                        <label>{characterData.name}</label>
+                                        <label>{characterData.title}</label>
                                     </div>
                                 );
                             }) : "Getting characters data"}
@@ -151,15 +144,8 @@ function ComicDetails({itemData, onClose}) {
 
                 <button className={"close-item-button"} onClick={closeDialog}>Close</button>
             </div>
-
-            {selectedItemData && (
-                <CharacterDetails
-                    itemData={selectedItemData}
-                    onClose={closeCharacterDialog}
-                />
-            )}
         </dialog>
     );
 }
 
-export default ComicDetails;
+export default CharacterDetails;

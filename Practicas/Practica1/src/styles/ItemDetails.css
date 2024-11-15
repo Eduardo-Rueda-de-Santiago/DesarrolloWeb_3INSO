@@ -3,24 +3,37 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    border: none; /* Optional: remove the dialog border */
-    top: 3%;
+    border-radius: 15px;
+    border: none;
+    top: 2%;
     left: 1%;
 
 }
 
 .item-detailed-card {
     background-color: #bdbdba;
-    margin: 8vh 5vw 0vh 5vw;
-    width: 90vw;
-    height: 90vh;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
     vertical-align: middle;
     justify-items: center;
     overflow-y: auto;
     display: grid;
     grid-template-rows: repeat(2, auto);
     gap: 0.5% 2%;
+}
+
+.close-item-button {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    width: 8%;
+    height: 11.5%;
+    font-size: 2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: darkred;
+
 }
 
 .item-details-title {
@@ -33,41 +46,48 @@
     border-radius: 10px;
     padding-left: 1%;
     text-align: center;
-
+    display: flex; /* Add flexbox */
+    align-items: center;
+    justify-content: center;
 }
 
+
 .item-details-extended {
-    border-radius: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr) min-content;
-    margin-left: 1%;
-    margin-right: 1%;
     margin-bottom: 1%;
+    width: 81%;
     grid-gap: 1%;
 }
 
 .item-details-image {
     border-radius: 10px;
-    margin-left: 1%;
-    width: 22.8vw;
-    height: 35vw;
+    width: 100%;
+    height: 72vh;
 
 }
 
 .item-details-summary {
     background-color: #cfcf8b;
-    height: 64vh;
+    height: 72vh;
     overflow-y: auto;
     width: 100%;
     border-radius: 10px;
 }
 
-.item-details-characters {
+.aux-item-details-div {
+    height: 72vh;
+    display: grid;
+    grid-gap: 2vh;
+    grid-template-rows: 60vh auto;
+}
+
+.item-details-listed-elements {
     background-color: #acda82;
     display: grid;
     grid-template-rows: repeat(1, auto);
     width: 100%;
-    height: 77.5vh;
+    height: 100%;
     vertical-align: middle;
     justify-items: center;
     overflow-y: auto;
@@ -75,13 +95,7 @@
 
 }
 
-.item-details-description {
-    display: grid;
-    margin-left: -15%;
-    margin-right: 5%;
-}
-
-.item-details-character {
+.item-details-element {
     background-color: #f8f8ec;
     width: 95%;
     height: 100px;
@@ -94,15 +108,15 @@
 
 }
 
-.item-details-add-favourite {
+.item-details-element-image {
+    width: 90px;
+    height: 90px;
     border-radius: 10px;
-    border: none;
-
+    margin-left: 3%;
 }
 
-.item-details-character-image {
-    width: 5vw;
-    height: 10vh;
-    border-radius: 10px;
-    margin-left: 1vw;
+.item-details-favourite {
+    border: none;
+    background-color: #4eeab6;
+    border-radius: 15px;
 }

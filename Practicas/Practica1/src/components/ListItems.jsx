@@ -16,10 +16,15 @@ import '../styles/ListItems.css'
 
 /**
  * Lista de items que se muestran en una página.
+ * @param query Query con la que obtener los datos
+ * @param DetailsComponent Componente con los detalles en caso de que se quieran ver.
+ * @param namePath Camino al nombre de los componentes de la lista.
+ * @param thumbnailPath Camino al thubmnail de los componentes de la lista.
+ * @param thumbnailExtensionPath Camino a la extensión de los componentes de la lista.
  * @returns {JSX.Element}
  * @constructor
  */
-function ListItems({query, detailsComponent, namePath, thumbnailPath, thumbnailExtensionPath}) {
+function ListItems({query, DetailsComponent, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
     const [data, setData] = useState(null);
     const [dataItemsLoaded, setDataItemsLoaded] = useState(0);
@@ -85,10 +90,8 @@ function ListItems({query, detailsComponent, namePath, thumbnailPath, thumbnailE
                 : <></>
             }
             {selectedItemData && (
-                <ComicDetails
+                <DetailsComponent
                     itemData={selectedItemData}
-                    detailsQuery={detailsQuery}
-                    favouriteCategory={favouriteCategory}
                     onClose={closeDialog}
                 />
             )}
