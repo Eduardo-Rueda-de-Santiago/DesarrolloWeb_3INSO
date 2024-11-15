@@ -1,6 +1,7 @@
 import MarvelService from "../services/Marvel";
 import Navbar from "../components/Navbar";
 import ListItems from "../components/ListItems";
+import CharacterDetails from "../components/CharacterDetails";
 
 function Characters() {
 
@@ -26,7 +27,7 @@ function Characters() {
             <Navbar/>
             <ListItems
                 query={query}
-                detailsNavigatePage={'/ComicDetails'}
+                DetailsComponent={CharacterDetails}
                 namePath={'name'}
                 thumbnailPath={'thumbnail.path'}
                 thumbnailExtensionPath={'thumbnail.extension'}

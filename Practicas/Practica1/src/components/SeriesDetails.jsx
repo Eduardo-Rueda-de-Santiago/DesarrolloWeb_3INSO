@@ -9,7 +9,7 @@ import Favourites from "../services/Favourites";
  */
 import '../styles/ItemDetails.css'
 import MarvelService from "../services/Marvel";
-import SeriesDetails from "./SeriesDetails";
+import CharacterDetails from "./CharacterDetails";
 
 /**
  * Componente para mostrar los detalles los comics
@@ -18,7 +18,7 @@ import SeriesDetails from "./SeriesDetails";
  * @returns {JSX.Element}
  * @constructor
  */
-function CharacterDetails({itemData, onClose}) {
+function SeriesDetails({itemData, onClose}) {
 
     // Cosas de estados
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -27,11 +27,11 @@ function CharacterDetails({itemData, onClose}) {
     const [favouriteButton, setFavouriteButton] = useState(<></>);
     const [selectedItemData, setSelectedItemData] = useState(null); // To track selected item
 
-    const closeSeriesDialog = () => {
+    const closeCharacterDialog = () => {
         setSelectedItemData(null);
     }
 
-    const favouritesService = new Favourites('characters');
+    const favouritesService = new Favourites('series');
 
     // Ref al dialog
     const dialogRef = useRef(null);
@@ -68,13 +68,13 @@ function CharacterDetails({itemData, onClose}) {
     }
 
     // Query para coger los personajes del comic
-    const characterSeriesQuery = async (characterId) => {
+    const seriesCharactersQuery = async (seriesId) => {
 
         let queryResults = null;
 
         try {
 
-            queryResults = new MarvelService().getCharacterSeries(characterId);
+            queryResults = new MarvelService().getSeriesCharacters(seriesId);
 
         } catch (exception) {
 
@@ -94,7 +94,7 @@ function CharacterDetails({itemData, onClose}) {
         }
 
         // Pedir los personajes al tener el item que se quiere detallar
-        characterSeriesQuery(itemData.id).then(
+        seriesCharactersQuery(itemData.id).then(
             data => {
                 setItemCharacters(data);
                 setItemsCharactersUpdated(true);
@@ -111,11 +111,10 @@ function CharacterDetails({itemData, onClose}) {
         onClose();
     };
 
-
     return (
         <dialog className={"item-dialogue"} ref={dialogRef} open={isDialogOpen}>
             <div className={"item-detailed-card"}>
-                <label className={"item-details-title"}>{itemData.name}</label>
+                <label className={"item-details-title"}>{itemData.title}</label>
                 <div className={"item-details-extended"}>
                     <img className={"item-details-image"}
                          src={itemData.thumbnail.path + "." + itemData.thumbnail.extension}
@@ -123,7 +122,7 @@ function CharacterDetails({itemData, onClose}) {
                     />
 
                     <div className={"item-details-summary"}>
-                        <h2 style={{textAlign: "center"}}>Description</h2>
+                        <h2 style={{textAlign: "center"}}>Summary</h2>
                         <br/>
                         {itemData.description}
                     </div>
@@ -131,17 +130,17 @@ function CharacterDetails({itemData, onClose}) {
                     <div className={"aux-item-details-div"}>
 
                         <div className={"item-details-listed-elements"}>
-                            {itemCharactersUpdated ? itemCharacters.map((seriesData, index) => {
+                            {itemCharactersUpdated ? itemCharacters.map((characterData, index) => {
                                 return (
                                     <div key={index} className={"item-details-element"}
-                                         onClick={() => setSelectedItemData(seriesData)} // Set selected item data
+                                         onClick={() => setSelectedItemData(characterData)} // Set selected item data
                                     >
                                         <img className={"item-details-element-image"}
-                                             src={`${seriesData.thumbnail.path}.${seriesData.thumbnail.extension}`}/>
-                                        <label>{seriesData.title}</label>
+                                             src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
+                                        <label>{characterData.name}</label>
                                     </div>
                                 );
-                            }) : "Getting series data"}
+                            }) : "Getting characters data"}
                         </div>
 
                         {favouriteButton}
@@ -153,16 +152,14 @@ function CharacterDetails({itemData, onClose}) {
                 <button className={"close-item-button"} onClick={closeDialog}>Close</button>
             </div>
 
-
             {selectedItemData && (
-                <SeriesDetails
+                <CharacterDetails
                     itemData={selectedItemData}
-                    onClose={closeSeriesDialog}
+                    onClose={closeCharacterDialog}
                 />
             )}
-
         </dialog>
     );
 }
 
-export default CharacterDetails;
+export default SeriesDetails;
