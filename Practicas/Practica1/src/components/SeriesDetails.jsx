@@ -2,7 +2,7 @@
  * Internal libs
  */
 import {useEffect, useRef, useState} from "react";
-import Favourites from "../services/Favourites";
+import FavouritesService from "../services/FavouritesService";
 
 /**
  * Styles
@@ -31,7 +31,7 @@ function SeriesDetails({itemData, onClose}) {
         setSelectedItemData(null);
     }
 
-    const favouritesService = new Favourites('series');
+    const favouritesService = new FavouritesService('series');
 
     // Ref al dialog
     const dialogRef = useRef(null);

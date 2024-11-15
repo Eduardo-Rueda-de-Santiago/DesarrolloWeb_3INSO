@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
  * Internal libs
  */
 import {getNestedValue} from "../utils/ObjectProcessingUtils";
-import ComicDetails from "./ComicDetails";
 
 /**
  * Styles
