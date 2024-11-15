@@ -2,22 +2,22 @@
  * Internal libs
  */
 import {useEffect, useRef, useState} from "react";
+import Favourites from "../services/Favourites";
 
 /**
  * Styles
  */
 import '../styles/ItemDetails.css'
+import MarvelService from "../services/Marvel";
 
 /**
- * Componente para mostrar los detalles de un item de la API
+ * Componente para mostrar los detalles los comics
  * @param itemData Datos del item a mostrar
- * @param detailsQuery Query del item para pedir los detalles
  * @param onClose Cómo indicar que el diálogo se cierra.
- * @param favouriteCategory La categoría en la que se guardan los favoritos.
  * @returns {JSX.Element}
  * @constructor
  */
-function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
+function ComicDetails({itemData, onClose}) {
 
     // Cosas de estados
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -25,25 +25,58 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
     const [itemCharactersUpdated, setItemsCharactersUpdated] = useState(false);
     const [favouriteButton, setFavouriteButton] = useState(<></>);
 
+    const favouritesService = new Favourites('comics');
+
     // Ref al dialog
     const dialogRef = useRef(null);
 
     // Actualizar el botón de favoritos
     const updateFavouriteButton = () => {
 
-        if (isFavourite()) {
+        if (favouritesService.isFavourite(itemData)) {
 
-            setFavouriteButton(<button onClick={removeFavourite}>Quitar favorito</button>);
+            setFavouriteButton(
+                <button
+                    onClick={() => {
+                        favouritesService.removeFavourite(itemData);
+                        updateFavouriteButton();
+                    }}
+                    className={"item-details-remove-favourite"}>
+                    Quitar favorito</button>
+            );
 
         } else {
 
             setFavouriteButton(
-                <button onClick={addFavourite} className={"comic-details-add-favourite"}>Add
-                    favourite</button>
+                <button
+                    onClick={() => {
+                        addFavourite();
+                        updateFavouriteButton();
+                    }}
+                    className={"item-details-add-favourite"}>
+                    Add favourite</button>
             );
 
         }
 
+    }
+
+    // Query para coger los personajes del comic
+    const comicCharactersQuery = async (comicId) => {
+
+        let queryResults = null;
+
+        try {
+
+            queryResults = new MarvelService().getComicsCharacters(comicId);
+
+        } catch (exception) {
+
+            console.error(exception);
+
+        }
+
+        return queryResults;
     }
 
     // Muestra el modal en cuanto se pasa un item
@@ -55,7 +88,7 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
         }
 
         // Pedir los personajes al tener el item que se quiere detallar
-        detailsQuery(itemData.id).then(
+        comicCharactersQuery(itemData.id).then(
             data => {
                 setItemCharacters(data);
                 setItemsCharactersUpdated(true);
@@ -74,15 +107,15 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
 
     return (
         <dialog className={"item-dialogue"} ref={dialogRef} open={isDialogOpen}>
-            <div className={"comic-detailed-card"}>
-                <label className={"comic-details-title"}>{itemData.title}</label>
-                <div className={"comic-details-extended"}>
-                    <img className={"comic-details-image"}
+            <div className={"item-detailed-card"}>
+                <label className={"item-details-title"}>{itemData.title}</label>
+                <div className={"item-details-extended"}>
+                    <img className={"item-details-image"}
                          src={itemData.thumbnail.path + "." + itemData.thumbnail.extension}
                          alt={"Image not found"}
                     />
-                    <div className={"comic-details-description"}>
-                        <div className={"comic-details-summary"}>
+                    <div className={"item-details-description"}>
+                        <div className={"item-details-summary"}>
                             <h2>Summary</h2>
                             <br/>
                             {itemData.description}
@@ -91,11 +124,11 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
                         {favouriteButton}
 
                     </div>
-                    <div className={"comic-details-characters"}>
+                    <div className={"item-details-characters"}>
                         {itemCharactersUpdated ? itemCharacters.map((characterData, index) => {
                             return (
-                                <div key={index} className={"comic-details-character"}>
-                                    <img className={"comic-details-character-image"}
+                                <div key={index} className={"item-details-character"}>
+                                    <img className={"item-details-character-image"}
                                          src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}/>
                                     <label>{characterData.name}</label>
                                 </div>
@@ -109,4 +142,4 @@ function ItemDetails({itemData, detailsQuery, favouriteCategory, onClose}) {
     );
 }
 
-export default ItemDetails;
+export default ComicDetails;

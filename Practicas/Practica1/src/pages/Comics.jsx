@@ -21,23 +21,6 @@ function Comics() {
         return queryResults;
     }
 
-    const charactersQuery = async (comicId) => {
-
-        let queryResults = null;
-
-        try {
-
-            queryResults = new MarvelService().getComicsCharacters(comicId);
-
-        } catch (exception) {
-
-            console.error(exception);
-
-        }
-
-        return queryResults;
-    }
-
     return (
         <>
             <Navbar/>

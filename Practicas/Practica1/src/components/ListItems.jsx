@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
  * Internal libs
  */
 import {getNestedValue} from "../utils/ObjectProcessingUtils";
-import ItemDetails from "./ItemDetails";
+import ComicDetails from "./ComicDetails";
 
 /**
  * Styles
@@ -19,7 +19,7 @@ import '../styles/ListItems.css'
  * @returns {JSX.Element}
  * @constructor
  */
-function ListItems({query, detailsQuery, favouriteCategory, namePath, thumbnailPath, thumbnailExtensionPath}) {
+function ListItems({query, detailsComponent, namePath, thumbnailPath, thumbnailExtensionPath}) {
 
     const [data, setData] = useState(null);
     const [dataItemsLoaded, setDataItemsLoaded] = useState(0);
@@ -85,7 +85,7 @@ function ListItems({query, detailsQuery, favouriteCategory, namePath, thumbnailP
                 : <></>
             }
             {selectedItemData && (
-                <ItemDetails
+                <ComicDetails
                     itemData={selectedItemData}
                     detailsQuery={detailsQuery}
                     favouriteCategory={favouriteCategory}

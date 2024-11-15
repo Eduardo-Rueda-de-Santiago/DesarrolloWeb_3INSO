@@ -9,7 +9,7 @@
 
 }
 
-.comic-detailed-card {
+.item-detailed-card {
     background-color: #bdbdba;
     margin: 8vh 5vw 0vh 5vw;
     width: 90vw;
@@ -23,7 +23,7 @@
     gap: 0.5% 2%;
 }
 
-.comic-details-title {
+.item-details-title {
     color: #e14a4a;
     font-size: 2em;
     font-weight: bold;
@@ -36,7 +36,7 @@
 
 }
 
-.comic-details-extended {
+.item-details-extended {
     border-radius: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr) min-content;
@@ -46,7 +46,7 @@
     grid-gap: 1%;
 }
 
-.comic-details-image {
+.item-details-image {
     border-radius: 10px;
     margin-left: 1%;
     width: 22.8vw;
@@ -54,7 +54,7 @@
 
 }
 
-.comic-details-summary {
+.item-details-summary {
     background-color: #cfcf8b;
     height: 64vh;
     overflow-y: auto;
@@ -62,7 +62,7 @@
     border-radius: 10px;
 }
 
-.comic-details-characters {
+.item-details-characters {
     background-color: #acda82;
     display: grid;
     grid-template-rows: repeat(1, auto);
@@ -75,13 +75,13 @@
 
 }
 
-.comic-details-description {
+.item-details-description {
     display: grid;
     margin-left: -15%;
     margin-right: 5%;
 }
 
-.comic-details-character {
+.item-details-character {
     background-color: #f8f8ec;
     width: 95%;
     height: 100px;
@@ -94,13 +94,13 @@
 
 }
 
-.comic-details-add-favourite {
+.item-details-add-favourite {
     border-radius: 10px;
     border: none;
 
 }
 
-.comic-details-character-image {
+.item-details-character-image {
     width: 5vw;
     height: 10vh;
     border-radius: 10px;
