@@ -50,7 +50,7 @@
 
 }
 
-.favourites-item-display :hover {
+.favourites-item-display:hover {
     cursor: pointer;
     background-color: #eaa297;
 }
