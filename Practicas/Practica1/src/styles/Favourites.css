@@ -6,8 +6,8 @@
 }
 
 .favourites-category {
-    width: 100%;
-    height: 25vh;
+    width: 98vw;
+    height: 26vh;
     background-color: #a5e8d2;
     border-radius: 15px;
 }
@@ -25,23 +25,51 @@
     border-radius: 15px;
 }
 
-.favourites-category-items {
+.favourites-category-item {
     display: grid;
+    width: 98%;
+    height: 19vh;
+    margin-left: 1%;
     overflow-x: auto;
-
+    grid-gap: 1%;
+    grid-auto-flow: column; /* Forces items into a single row */
+    grid-template-rows: 1fr; /* Ensures a single row */
+    grid-auto-columns: auto; /* Adjusts column sizing automatically */
+    justify-items: start; /* Aligns individual items to the start of their cells */
+    justify-content: start; /* Aligns the grid content to the start of the container */
 }
 
-.favourites-items-display {
-    width: 100%;
-    height: 100%;
+
+.favourites-item-display {
+    display: grid;
+    width: 7vw;
+    height: 15vh;
     border-radius: 10px;
+    background-color: #b4cac2;
+    transition: transform 0.5s ease, background-color 0.3s ease;
+
 }
 
-.favourites-items-display-image {
-    width: 90%;
-    height: 90%;
+.favourites-item-display :hover {
+    cursor: pointer;
+    background-color: #eaa297;
+}
+
+.favourites-item-display-image {
+    width: 6.3vw;
+    height: 11vh;
     position: relative;
     top: 5%;
     left: 5%;
     border-radius: 10px;
+}
+
+.favourites-item-display-name {
+    background-color: #e6d066;
+    border-radius: 0px 0px 10px 10px;
+    position: relative;
+    display: grid;
+    vertical-align: middle;
+    justify-items: center;
+    align-items: center;
 }
