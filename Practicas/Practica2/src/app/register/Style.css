@@ -1,0 +1,91 @@
+.register-title {
+
+    position: absolute;
+    top: 5vh;
+    width: 20vw;
+    height: 7vh;
+    left: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #8cbc9d;
+    border-radius: 15px;
+}
+
+.register-form {
+    background-color: #8cbc9d;
+    position: absolute;
+    left: 35vw;
+    top: 25vh;
+    width: 30vw;
+    height: 50vh;
+    border-radius: 15px;
+}
+
+.common-register-form-input {
+
+    position: relative;
+    border: none;
+    height: 6vh;
+    width: 20vw;
+    left: 15%;
+    background-color: #71e498;
+    border-radius: 15px;
+    font-size: 1.3em;
+
+
+}
+
+.register-firstname {
+
+    top: 5vh;
+}
+
+.register-lastname {
+    top: 7vh;
+
+}
+
+.register-email {
+    top: 9vh;
+
+}
+
+.register-password {
+    top: 11vh;
+
+}
+
+.register-terms-checkbox {
+
+    position: relative;
+    top: 18vh;
+    left: -50%;
+}
+
+.register-terms-label {
+    position: relative;
+    top: 13.7vh;
+    left: 22%;
+    height: 5vh;
+    width: 30vw;
+
+}
+
+.register-submit {
+    position: relative;
+    top: 14vh;
+    left: 15%;
+    width: 20vw;
+    height: 5vh;
+    border-radius: 15px;
+    border: none;
+    background-color: #6b8e5a;
+    color: white;
+    font-size: 1.3em;
+}
+
+.register-submit:hover {
+    background-color: #7cd557;
+}

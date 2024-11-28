@@ -7,8 +7,9 @@ export default class UserService {
     constructor() {
     }
 
-    async register() {
+    async register(firstName: string, lastName: string, email: string, password: string) {
 
+        fetch();
     }
 
     async get() {
