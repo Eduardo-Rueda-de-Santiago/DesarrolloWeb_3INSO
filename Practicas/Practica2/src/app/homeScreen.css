@@ -1,0 +1,61 @@
+.home-screen-root {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../public/images/HomeScreenImage.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left;
+}
+
+.home-page-title {
+    position: absolute;
+    left: 45vw;
+    width: 10vw;
+    top: 3vh;
+    text-align: center;
+    background-color: #8cbc9d;
+    border-radius: 20px;
+}
+
+.home-page-function {
+    position: absolute;
+    background-color: #78c696;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 10vh;
+    right: 9vw;
+    width: 12vw;
+    height: 5vh;
+    border-radius: 15px;
+}
+
+.home-page-button {
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: cyan solid 2px;
+    background-color: #8cbc9d;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.register-button {
+
+    position: absolute;
+    top: 65vh;
+    right: 10vw;
+}
+
+.login-button {
+
+    position: absolute;
+    top: 35vh;
+    right: 10vw;
+}
