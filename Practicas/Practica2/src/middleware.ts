@@ -21,8 +21,7 @@ function isPublicUrl(targetUrl: string): boolean {
 export function middleware(request: NextRequest) {
 
     if (!isPublicUrl(request.nextUrl.pathname)) {
-        const userToken = null;
-        // const userToken = new UserService().getToken(request.cookies);
+        const userToken = new UserService()).getServerToken();
         if (!userToken) {
             return NextResponse.redirect(new URL('/login', request.nextUrl.origin));
         }

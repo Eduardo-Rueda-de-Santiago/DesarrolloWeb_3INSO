@@ -35,9 +35,9 @@ export default class UserService {
     }
 
     /**
-     * Obtiene la cookie de token de usuario.
+     * Obtiene la cookie de token de usuario desde el lado de cliente.
      */
-    getToken(): string {
+    getClientToken(): string {
 
         const cookies = document.cookie.split(';');
         const userTokenCookie = cookies.find(cookie => cookie.trim().startsWith('userToken='));
@@ -50,6 +50,12 @@ export default class UserService {
 
     }
 
+    /**
+     * Obtiene la cookie de token de usuario desde el lado de servidor.
+     */
+    async getServerToken() {
+
+    }
 
     /**
      * Guarda el token
