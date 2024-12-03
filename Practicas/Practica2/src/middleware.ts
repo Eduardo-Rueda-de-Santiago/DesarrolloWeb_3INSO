@@ -7,30 +7,35 @@ import UserService from "@/services/User";
  */
 const PUBLIC_URLS: Array<string> = ['/', '/login', '/register'];
 
+function isPublicUrl(targetUrl: string): boolean {
+
+    for (const publicUrl of PUBLIC_URLS) {
+        if (publicUrl === targetUrl) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 export function middleware(request: NextRequest) {
-//
-//     console.log("Made a request");
-//
-//     if (!(request.nextUrl.pathname in PUBLIC_URLS)) {
-//
-//         console.log("To non public url")
-//
-//         const userToken = new UserService().getToken(request.cookies);
-//
-//         if (!userToken) {
-//
-//             console.log("Without token")
-//
-//             const newUrl = new URL('/login', request.url);
-//             console.log(newUrl)
-//             return NextResponse.redirect(newUrl);
-//
-//         }
-//
-//     }
-//
+
+    if (!isPublicUrl(request.nextUrl.pathname)) {
+        const userToken = null;
+        // const userToken = new UserService().getToken(request.cookies);
+        if (!userToken) {
+            return NextResponse.redirect(new URL('/login', request.nextUrl.origin));
+        }
+    }
 }
 
 export const config = {
-    matcher: '/:path*',
-}
+    matcher: [
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:css|js|png|jpg|jpeg|svg|gif|ico|woff|woff2|ttf|eot|json)).*)',
+    ],
+};
+
+//
+// export const config = {
+//     matcher: '/:path*',
+// }

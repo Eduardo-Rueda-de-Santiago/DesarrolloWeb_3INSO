@@ -6,7 +6,7 @@ import {useEffect} from "react";
 export default function Dashboard() {
 
     useEffect(() => {
-        console.log("Token is:", new UserService().getToken())
+        // console.log("Token is:", new UserService().getToken())
 
     }, [])
     return (
