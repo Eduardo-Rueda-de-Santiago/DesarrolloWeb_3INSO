@@ -5,3 +5,8 @@ export interface UserRegisterForm {
     password: string;
     check: boolean
 }
+
+export interface UserLoginForm {
+    email: string;
+    password: string;
+}

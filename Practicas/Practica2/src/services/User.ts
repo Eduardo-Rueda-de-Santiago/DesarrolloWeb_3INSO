@@ -1,5 +1,5 @@
-import {UserRegisterForm} from '@/interfaces/UserDataTypes';
-import {UserTokenNotFoundError} from "@/exceptions/UserExceptions";
+import {UserLoginForm, UserRegisterForm} from '@/interfaces/UserDataTypes';
+import {UserNotFoundError, UserTokenNotFoundError} from "@/exceptions/UserExceptions";
 
 export default class UserService {
 
@@ -31,7 +31,7 @@ export default class UserService {
             .catch((err) => {
                 console.error("Error registering user", err);
                 throw err;
-            })
+            });
     }
 
     /**
@@ -69,8 +69,33 @@ export default class UserService {
 
     }
 
-    async login() {
-
+    /**
+     * Logs in the user
+     * @param userLoginForm The user login data
+     */
+    async login(userLoginForm: UserLoginForm): Promise<void> {
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/user/login?`
+            + new URLSearchParams({
+                email: userLoginForm.email,
+                password: userLoginForm.password
+            }).toString()
+            , {
+                method: 'POST',
+            })
+            .then(res => {
+                if (!res.ok) {
+                    throw new UserNotFoundError();
+                }
+                return res.json()
+            })
+            .then((data) => {
+                this.saveToken(data.token);
+            })
+            .catch((err) => {
+                console.error("Error registering user", err);
+                throw err;
+            })
     }
 
     async logout() {

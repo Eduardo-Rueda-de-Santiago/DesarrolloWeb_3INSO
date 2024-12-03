@@ -1,30 +1,89 @@
 "use client"
 
 import UserService from "@/services/User";
-import {FormEvent} from "react";
-// import './Style';
+import {useState} from "react";
+import {useRouter} from "next/navigation";
+import {UserLoginForm} from "@/interfaces/UserDataTypes";
+import '../register/Style.css';
 
 export default function Login() {
 
-    const submit = (event: FormEvent<HTMLFormElement>) => {
+    const router = useRouter();
 
-        event.preventDefault();
-        console.log("submit", event);
+    const [formData, setFormData] = useState<UserLoginForm>({
+        email: "",
+        password: "",
+    })
+
+    const updateFormData = (field: string, data: string | boolean) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: data,
+        }));
+    };
+
+    const validateForm = () => {
+
+        const {email, password} = formData;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email || !password) {
+            alert("Please fill out all fields.");
+            return false;
+        }
+
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters.");
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        return true;
+    };
+
+    const submit = (e: any) => {
+        e.preventDefault(); // Prevent page refresh on form submission
+        if (validateForm()) {
+            new UserService().login(formData)
+                .then(() => {
+                    router.push("/dashboard");
+                })
+        }
     }
+
     return (
         <div>
+
+            <h2 className={'register-title'}>Create your ZoSale id</h2>
+
             <form className={'register-form'} onSubmit={submit}>
-                
-                {/*<input type={'text'} placeholder={"First name"}/>*/}
-                {/*<input type={'text'} placeholder={"Last name"}/>*/}
-                {/*<input type={'text'} placeholder={"email"}/>*/}
-                {/*<input type={'password'} placeholder={"password"}/>*/}
-                {/*<input type={'checkbox'} name={'Terms agreement'}/>*/}
-                {/*<label htmlFor={'Terms agreement'}>I sell my soul to the devil and my data to our overlord*/}
-                {/*    google</label>*/}
-                {/*<input type={'submit'} className={'email-input'}/>*/}
+
+                <input
+                    className="common-register-form-input register-email"
+                    value={formData.email}
+                    type="text"
+                    placeholder="Email"
+                    onChange={(e) => updateFormData("email", e.target.value)}
+                />
+
+                <input
+                    className="common-register-form-input register-password"
+                    value={formData.password}
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => updateFormData("password", e.target.value)}
+                />
+                <input
+                    className={'register-submit'}
+                    type={'submit'}
+                />
 
             </form>
         </div>
     );
+
 }
