@@ -1,28 +1,66 @@
 "use client"
 
 import UserService from "@/services/User";
-import {FormEvent} from "react";
+import {useState} from "react";
 import './Style.css';
+import {UserRegisterForm} from '@/interfaces/UserDataTypes';
+import {useRouter} from 'next/navigation';
 
 export default function Register() {
 
-    const submit = (event: FormEvent<HTMLFormElement>) => {
+    const router = useRouter();
 
-        const userData = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
+    const [formData, setFormData] = useState<UserRegisterForm>({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        check: false
+    })
+
+    const updateFormData = (field: string, data: string | boolean) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: data,
+        }));
+    };
+
+    const validateForm = () => {
+
+        const {firstName, lastName, email, password, check} = formData;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!firstName || !lastName || !email || !password) {
+            alert("Please fill out all fields.");
+            return false;
         }
 
-        new UserService().register(
-            userData.firstName,
-            userData.lastName,
-            userData.email,
-            userData.password,
-        )
-        event.preventDefault();
-        console.log("submit", event);
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters.");
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        if (!check) {
+            alert("You must agree to the terms.");
+            return false;
+        }
+
+        return true;
+    };
+
+    const submit = (e: any) => {
+        e.preventDefault(); // Prevent page refresh on form submission
+        if (validateForm()) {
+            new UserService().register(formData)
+                .then(() => {
+                    router.push("/dashboard");
+                })
+        }
     }
 
     return (
@@ -34,45 +72,48 @@ export default function Register() {
 
                 <input
                     className={'common-register-form-input register-firstname'}
-                    value={'firstName'}
+                    value={formData.firstName}
                     type={'text'}
                     placeholder={"First name"}
+                    onChange={(e) => updateFormData("firstName", e.target.value)}
+
                 />
 
                 <input
-                    className={'common-register-form-input register-lastname'}
-                    value={'lastName'}
-                    type={'text'}
-                    placeholder={"Last name"}
+                    className="common-register-form-input register-lastname"
+                    value={formData.lastName}
+                    type="text"
+                    placeholder="Last name"
+                    onChange={(e) => updateFormData("lastName", e.target.value)}
                 />
 
                 <input
-                    className={'common-register-form-input register-email'}
-                    value={'email'}
-                    type={'text'}
-                    placeholder={"email"}
+                    className="common-register-form-input register-email"
+                    value={formData.email}
+                    type="text"
+                    placeholder="Email"
+                    onChange={(e) => updateFormData("email", e.target.value)}
                 />
 
                 <input
-                    className={'common-register-form-input register-password'}
-                    value={'password'}
-                    type={'password'}
-                    placeholder={"password"}
+                    className="common-register-form-input register-password"
+                    value={formData.password}
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => updateFormData("password", e.target.value)}
                 />
 
-                <input
-                    className={'register-terms-checkbox'}
-                    value={'terms'}
-                    type={'checkbox'}
-                    name={'Terms agreement'}
-                />
-
-                <p
-                    className={'register-terms-label'}
-                >
-                    I sell my soul to google
-                </p>
-
+                <div className="register-terms">
+                    <input
+                        className="register-terms-checkbox"
+                        checked={formData.check}
+                        type="checkbox"
+                        onChange={(e) => updateFormData("check", e.target.checked)}
+                    />
+                    <p className="register-terms-label">
+                        I sell my soul to google
+                    </p>
+                </div>
                 <input
                     className={'register-submit'}
                     type={'submit'}
