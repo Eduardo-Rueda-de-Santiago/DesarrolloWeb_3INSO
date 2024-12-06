@@ -110,9 +110,9 @@ export default function Register() {
                         type="checkbox"
                         onChange={(e) => updateFormData("check", e.target.checked)}
                     />
-                    <p className="register-terms-label">
+                    <label className="register-terms-label">
                         I sell my soul to google
-                    </p>
+                    </label>
                 </div>
                 <input
                     className={'register-submit'}
