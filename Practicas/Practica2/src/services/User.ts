@@ -51,13 +51,6 @@ export default class UserService {
     }
 
     /**
-     * Obtiene la cookie de token de usuario desde el lado de servidor.
-     */
-    async getServerToken() {
-
-    }
-
-    /**
      * Guarda el token
      * @param userToken Valor del token
      */
