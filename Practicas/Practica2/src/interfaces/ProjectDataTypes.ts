@@ -1,5 +1,4 @@
 import {GenericAddress} from "@/interfaces/GenericDataTypes";
-import {Property} from "csstype";
 
 export interface ProjectData {
 
