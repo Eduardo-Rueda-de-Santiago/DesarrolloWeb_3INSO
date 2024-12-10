@@ -1,7 +1,8 @@
 export interface ClientData {
+    _id: string,
     name: string,
     cif: string,
-    address: ClientAddress
+    address: ClientAddress | null,
 }
 
 export interface ClientAddress {

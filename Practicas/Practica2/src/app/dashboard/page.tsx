@@ -2,6 +2,7 @@
 import {useState, useEffect} from "react";
 import {ClientData} from "@/interfaces/ClientDataTypes";
 import ClientService from "@/services/Clients";
+import {useRouter} from "next/navigation";
 
 
 export default function Dashboard() {
@@ -18,6 +19,13 @@ export default function Dashboard() {
                 setClients(res);
             })
     }, []);
+
+    const router = useRouter();
+
+    const clientCreationRedirect = () => {
+        router.push("/dashboard/createClient");
+    }
+    
     return (
         <div>
             <p>Soy un dashboard</p>
@@ -25,7 +33,7 @@ export default function Dashboard() {
             <p> {clients.toString()}
             </p>
             {
-                noClients && <p>Crea tu primer cliente!</p>
+                noClients && <button onClick={clientCreationRedirect}>Crea tu primer cliente!</button>
             }
         </div>
     );
