@@ -1,6 +1,6 @@
 import {ClientData} from "@/interfaces/ClientDataTypes";
 import UserService from "@/services/User";
-import {ClientsNotFetchedException} from "@/exceptions/ClientExceptions";
+import {ClientsNotFetchedError} from "@/exceptions/ClientExceptions";
 
 /**
  * Clase para interactuar con los clientes en la API
@@ -27,7 +27,7 @@ export default class ClientService {
             .then(res => {
                 console.log(res)
                 if (!res.ok) {
-                    throw new ClientsNotFetchedException();
+                    throw new ClientsNotFetchedError();
                 }
                 return res.json()
             })
