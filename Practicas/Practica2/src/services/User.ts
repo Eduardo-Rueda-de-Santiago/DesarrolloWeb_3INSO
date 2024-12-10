@@ -1,6 +1,9 @@
 import {UserLoginForm, UserRegisterForm, UserValidationForm} from '@/interfaces/UserDataTypes';
 import {UserNotFoundError, UserNotValidatedError, UserTokenNotFoundError} from "@/exceptions/UserExceptions";
 
+/**
+ * Servicio para interactuar con los usuarios en la api
+ */
 export default class UserService {
 
     constructor() {
@@ -114,7 +117,6 @@ export default class UserService {
             })
         }
 
-        console.log("options", options);
         return fetch(
             `${process.env["NEXT_PUBLIC_API_URL"]}/user/validation`,
             options
@@ -126,14 +128,19 @@ export default class UserService {
                 }
                 return res.json()
             })
-        
+
     }
 
     async logout() {
-
+        try {
+            document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        } catch (error) {
+            throw error;
+        }
     }
 
     async delete() {
+        // No llegué
 
     }
 }
