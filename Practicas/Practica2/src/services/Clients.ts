@@ -42,14 +42,19 @@ export default class ClientService {
      */
     async createClient(clientData: ClientData): Promise<ClientData> {
 
+        const {_id, ...clientDataWithoutId} = clientData;
+
+
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${new UserService().getClientToken()}`
             },
-            body: JSON.stringify(clientData)
+            body: JSON.stringify(clientDataWithoutId)
         }
+
+        console.log(options, options)
 
         return fetch(
             `${process.env["NEXT_PUBLIC_API_URL"]}/client`,

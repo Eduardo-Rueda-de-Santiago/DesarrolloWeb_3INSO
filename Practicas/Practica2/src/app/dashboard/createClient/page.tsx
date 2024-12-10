@@ -11,14 +11,33 @@ export default function CreateClient() {
         _id: "",
         name: "",
         cif: "",
-        address: null
+        address: {
+            street: "",
+            number: 0,
+            postal: 0,
+            city: "",
+            province: ""
+        }
     })
 
-    const updateFormData = (field: string, data: string | boolean) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [field]: data,
-        }));
+    const updateFormData = (field: string, data: string | boolean | number) => {
+        setFormData((prevData) => {
+            const fields = field.split('.');
+            if (fields.length > 1) {
+                return {
+                    ...prevData,
+                    [fields[0]]: {
+                        ...prevData.address,
+                        [fields[1]]: data,
+                    },
+                };
+            } else {
+                return {
+                    ...prevData,
+                    [field]: data,
+                };
+            }
+        });
     };
 
     const validateForm = () => {
@@ -27,6 +46,11 @@ export default function CreateClient() {
 
         if (!name || !cif) {
             alert("Please fill out all fields.");
+            return false;
+        }
+
+        if (cif && cif.length < 8) {
+            alert("CIF must be at least 8 characters.");
             return false;
         }
 

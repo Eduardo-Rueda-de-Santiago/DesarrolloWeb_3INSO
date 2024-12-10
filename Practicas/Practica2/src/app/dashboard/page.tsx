@@ -25,7 +25,7 @@ export default function Dashboard() {
     const clientCreationRedirect = () => {
         router.push("/dashboard/createClient");
     }
-    
+
     return (
         <div>
             <p>Soy un dashboard</p>
@@ -33,7 +33,11 @@ export default function Dashboard() {
             <p> {clients.toString()}
             </p>
             {
-                noClients && <button onClick={clientCreationRedirect}>Crea tu primer cliente!</button>
+                noClients ?
+                    <button onClick={clientCreationRedirect}>Crea tu primer cliente!</button>
+                    : <button onClick={clientCreationRedirect}>Crea tu otro cliente!</button>
+
+
             }
         </div>
     );
