@@ -1,5 +1,6 @@
-export interface DeliveryNote {
+export interface DeliveryNoteData {
 
+    _id: string,
     clientId: string,
     projectId: string,
     // "format": "material or hours",

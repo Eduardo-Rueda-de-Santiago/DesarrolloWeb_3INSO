@@ -1,19 +1,19 @@
 import UserService from "@/services/User";
-import {ProjectData} from "@/interfaces/ProjectDataTypes";
-import {ProjectsNotFetchedError} from "@/exceptions/ProjectExceptions";
+import {DeliveryNoteData} from "@/interfaces/DeliveryNoteDataTypes";
+import {DeliveryNotesNotFetchedError} from "@/exceptions/DeliveryNoteExceptions";
 
 /**
- * Clase para interactuar con los proyectos en la API
+ * Clase para interactuar con los albaranes en la API
  */
-export default class ProjectService {
+export default class DeliveryNoteService {
 
     constructor() {
     }
 
     /**
-     * Obtiene una lista con todos los proyectos del cliente.
+     * Obtiene una lista con todos los albaranes del proyecto.
      */
-    async getClientProjects(clientId: string): Promise<ProjectData[]> {
+    async getProjectDeliveryNotes(projectId: string): Promise<DeliveryNoteData[]> {
 
         const options = {
             method: 'GET',
@@ -24,28 +24,27 @@ export default class ProjectService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/project?`
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/project?`
             + new URLSearchParams({
-                client: clientId
+                projectId: projectId
             }).toString(),
             options
         )
             .then(res => {
                 if (!res.ok) {
-                    throw new ProjectsNotFetchedError();
+                    throw new DeliveryNotesNotFetchedError();
                 }
                 return res.json()
             })
     }
 
     /**
-     * Crea un proyecto
-     * @param projectData Datos del cliente a crear
+     * Crea un albarán
+     * @param deliveryNoteData Datos del albarán a crear
      */
-    async createProject(projectData: ProjectData): Promise<ProjectData> {
+    async createDeliveryNote(deliveryNoteData: DeliveryNoteData): Promise<DeliveryNoteData> {
 
-        const {_id, ...projectDataWithoutId} = projectData;
-
+        const {_id, ...projectDataWithoutId} = deliveryNoteData;
 
         const options = {
             method: 'POST',
@@ -59,16 +58,16 @@ export default class ProjectService {
         console.log(options, options)
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/project`,
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote`,
             options
         ).then(res => res.json());
     }
 
     /**
-     * Actualiza un proyecto
-     * @param projectData Datos del cliente a actualizar
+     * Actualiza un albarán
+     * @param deliveryNoteData Datos del albarán a actualizar
      */
-    async updateProject(projectData: ProjectData): Promise<ProjectData> {
+    async updateDeliveryNote(deliveryNoteData: DeliveryNoteData): Promise<DeliveryNoteData> {
 
         const options = {
             method: 'PUT',
@@ -76,23 +75,23 @@ export default class ProjectService {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${new UserService().getClientToken()}`
             },
-            body: JSON.stringify(projectData)
+            body: JSON.stringify(deliveryNoteData)
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/client/?`
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/?`
             + new URLSearchParams({
-                id: projectData._id
+                id: deliveryNoteData._id
             }).toString(),
             options
         ).then(res => res.json());
     }
 
     /**
-     * Borra un proyecto
-     * @param projectData Datos del proyecto a borrar
+     * Borra un albarán
+     * @param deliveryNoteData Datos del albarán a borrar
      */
-    async deleteProject(projectData: ProjectData): Promise<ProjectData> {
+    async deleteDeliveryNote(deliveryNoteData: DeliveryNoteData): Promise<DeliveryNoteData> {
 
         const options = {
             method: 'DELETE',
@@ -103,9 +102,9 @@ export default class ProjectService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/project/?`
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/?`
             + new URLSearchParams({
-                id: projectData._id
+                id: deliveryNoteData._id
             }).toString(),
             options
         ).then(res => res.json());
