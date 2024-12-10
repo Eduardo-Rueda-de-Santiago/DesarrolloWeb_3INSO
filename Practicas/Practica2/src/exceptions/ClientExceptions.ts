@@ -12,7 +12,7 @@ export class ClientsNotFetchedError extends Error {
  */
 export class ClientNotCreatedError extends Error {
     constructor(text?: string) {
-        super("Clients couldn't be created." + text);
+        super("Client couldn't be created." + text);
     }
 }
 
@@ -21,7 +21,7 @@ export class ClientNotCreatedError extends Error {
  */
 export class ClientNotEditedError extends Error {
     constructor(text?: string) {
-        super("Clients couldn't be edited." + text);
+        super("Client couldn't be edited." + text);
     }
 }
 
@@ -31,6 +31,6 @@ export class ClientNotEditedError extends Error {
  */
 export class ClientNotDeletedError extends Error {
     constructor(text?: string) {
-        super("Clients couldn't be deleted." + text);
+        super("Client couldn't be deleted." + text);
     }
 }

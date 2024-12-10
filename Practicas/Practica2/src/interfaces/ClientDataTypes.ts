@@ -1,6 +1,13 @@
 export interface ClientData {
-    userId: string;
-    name: string;
-    cif: string;
-    _id: string;
+    name: string,
+    cif: string,
+    address: ClientAddress
+}
+
+export interface ClientAddress {
+    street: string,
+    number: number,
+    postal: number,
+    city: string,
+    province: string
 }
