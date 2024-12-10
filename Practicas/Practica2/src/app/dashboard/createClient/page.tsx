@@ -76,6 +76,7 @@ export default function CreateClient() {
 
     return (
         <div>
+            
             <h2 className={''}>Creación de cliente</h2>
 
             <form onSubmit={submit}>
