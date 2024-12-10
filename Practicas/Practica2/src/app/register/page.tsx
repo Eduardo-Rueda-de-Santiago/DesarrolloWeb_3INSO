@@ -58,7 +58,7 @@ export default function Register() {
         if (validateForm()) {
             new UserService().register(formData)
                 .then(() => {
-                    router.push("/dashboard");
+                    router.push("/userValidation");
                 })
         }
     }

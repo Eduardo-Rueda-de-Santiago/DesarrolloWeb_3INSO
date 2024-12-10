@@ -1,5 +1,5 @@
-import {UserLoginForm, UserRegisterForm} from '@/interfaces/UserDataTypes';
-import {UserNotFoundError, UserTokenNotFoundError} from "@/exceptions/UserExceptions";
+import {UserLoginForm, UserRegisterForm, UserValidationForm} from '@/interfaces/UserDataTypes';
+import {UserNotFoundError, UserNotValidatedError, UserTokenNotFoundError} from "@/exceptions/UserExceptions";
 
 export default class UserService {
 
@@ -95,6 +95,36 @@ export default class UserService {
                 console.error("Error registering user", err);
                 throw err;
             })
+    }
+
+    async validateUser(userValidationForm: UserValidationForm): Promise<Response> {
+
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/user/validation`
+            , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.getClientToken()}`
+                },
+                body: JSON.stringify({
+                    code: userValidationForm.validationString
+                })
+            })
+            .then(res => {
+                console.log(res)
+                if (!res.ok) {
+                    throw new UserNotValidatedError();
+                }
+                return res.json()
+            })
+        //     .then((data) => {
+        //         this.saveToken(data.token);
+        //     })
+        //     .catch((err) => {
+        //         console.error("Error registering user", err);
+        //         throw err;
+        //     })
     }
 
     async logout() {

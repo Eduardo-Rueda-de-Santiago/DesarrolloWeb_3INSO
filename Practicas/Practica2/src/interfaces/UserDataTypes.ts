@@ -10,3 +10,7 @@ export interface UserLoginForm {
     email: string;
     password: string;
 }
+
+export interface UserValidationForm {
+    validationString: string;
+}

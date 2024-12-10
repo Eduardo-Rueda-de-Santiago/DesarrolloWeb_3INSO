@@ -9,3 +9,9 @@ export class UserNotFoundError extends Error {
         super("User doesn't exist.");
     }
 }
+
+export class UserNotValidatedError extends Error {
+    constructor() {
+        super("User couldn't be validated exist.");
+    }
+}
