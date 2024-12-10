@@ -97,20 +97,28 @@ export default class UserService {
             })
     }
 
+    /**
+     * Función para validar el usuario.
+     * @param userValidationForm El código de validación del usuario
+     */
     async validateUser(userValidationForm: UserValidationForm): Promise<Response> {
 
-        return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/user/validation`
-            , {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.getClientToken()}`
-                },
-                body: JSON.stringify({
-                    code: userValidationForm.validationString
-                })
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.getClientToken()}`
+            },
+            body: JSON.stringify({
+                code: userValidationForm.validationString
             })
+        }
+
+        console.log("options", options);
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/user/validation`,
+            options
+        )
             .then(res => {
                 console.log(res)
                 if (!res.ok) {
@@ -118,13 +126,7 @@ export default class UserService {
                 }
                 return res.json()
             })
-        //     .then((data) => {
-        //         this.saveToken(data.token);
-        //     })
-        //     .catch((err) => {
-        //         console.error("Error registering user", err);
-        //         throw err;
-        //     })
+        
     }
 
     async logout() {

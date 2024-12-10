@@ -25,7 +25,7 @@ export default function UserValidation() {
         const {validationString} = formData;
 
         if (validationString.length < 6) {
-            console.log("Validation code must have at least 6 characters");
+            alert("Validation code must have at least 6 characters");
             return false;
         }
 
@@ -39,8 +39,7 @@ export default function UserValidation() {
         if (validateForm()) {
             new UserService().validateUser(formData)
                 .then((res) => {
-                    console.log(res);
-                    // router.push("/dashboard");
+                    router.push("/dashboard");
                 })
                 .catch((err: Error) => {
                     console.log(err);
