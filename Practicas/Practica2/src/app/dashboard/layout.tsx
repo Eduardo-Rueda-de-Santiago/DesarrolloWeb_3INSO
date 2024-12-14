@@ -1,4 +1,5 @@
 import SideMenu from "@/app/dashboard/SideMenu";
+import "./SideMenu.css";
 
 export default function RootLayout({
                                        children,
@@ -9,7 +10,9 @@ export default function RootLayout({
         <html lang="en">
         <body>
         <SideMenu/>
-        {children}
+        <div className={"Side-menu-margin"}>
+            {children}
+        </div>
         </body>
         </html>
     );
