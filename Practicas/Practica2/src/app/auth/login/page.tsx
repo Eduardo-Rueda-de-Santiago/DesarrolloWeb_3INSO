@@ -4,7 +4,7 @@ import UserService from "@/services/User";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {UserLoginForm} from "@/interfaces/UserDataTypes";
-import '../register/Style.css';
+import '@/app/auth/register/Style.css';
 
 export default function Login() {
 
@@ -50,7 +50,7 @@ export default function Login() {
         if (validateForm()) {
             new UserService().login(formData)
                 .then(() => {
-                    router.push("/dashboard");
+                    router.push("/dashboard/client/explore");
                 })
         }
     }

@@ -5,7 +5,7 @@ import UserService from "@/services/User";
 /**
  * Urls a las que el usuario puede accedes sin token.
  */
-const PUBLIC_URLS: Array<string> = ['/', '/login', '/register'];
+const PUBLIC_URLS: Array<string> = ['/', '/auth/login', '/auth/register'];
 
 function isPublicUrl(targetUrl: string): boolean {
 
