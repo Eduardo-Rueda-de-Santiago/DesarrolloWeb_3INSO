@@ -17,73 +17,68 @@ export default function SideMenu() {
     }
     return (
         <div className={"Side-menu"}>
+
+            <h1 className={"side-menu-title"}>ZoSale</h1>
             <div className={"side-menu-explorer"}>
-                <div>
+                <div className={"side-menu-navigation-category"}>
                     <h3>Clientes</h3>
-                    <ul>
-                        <li>
-                            <Link
-                                href='/dashboard/client/explore'
-                                className={''}
-                            >
-                                Explorar
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href='/dashboard/client/create'
-                                className={''}
-                            >
-                                Crear
-                            </Link>
-                        </li>
-                    </ul>
+                    <div className={"side-menu-link-container"}>
+                        <Link
+                            href='/dashboard/client/explore'
+                            className={'side-menu-link'}
+                        >
+                            Explorar
+                        </Link>
+                        <Link
+                            href='/dashboard/client/create'
+                            className={'side-menu-link'}
+                        >
+                            Crear
+                        </Link>
+                    </div>
                 </div>
-                <div>
+                <div className={"side-menu-navigation-category"}>
                     <h3>Proyectos</h3>
-                    <ul>
-                        <li>
-                            <Link
-                                href='/dashboard/project/explore'
-                                className={''}
-                            >
-                                Explorar
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href='/dashboard/project/create'
-                                className={''}
-                            >
-                                Crear
-                            </Link>
-                        </li>
-                    </ul>
+                    <div className={"side-menu-link-container"}>
+
+                        <Link
+                            href='/dashboard/project/explore'
+                            className={'side-menu-link'}
+                        >
+                            Explorar
+                        </Link>
+
+                        <Link
+                            href='/dashboard/project/create'
+                            className={'side-menu-link'}
+                        >
+                            Crear
+                        </Link>
+
+                    </div>
                 </div>
-                <div>
+                <div className={"side-menu-navigation-category"}>
                     <h3>Albaranes</h3>
-                    <ul>
-                        <li>
-                            <Link
-                                href='/dashboard/deliveryNote/explore'
-                                className={''}
-                            >
-                                Explorar
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href='/dashboard/deliveryNote/create'
-                                className={''}
-                            >
-                                Crear
-                            </Link>
-                        </li>
-                    </ul>
+                    <div className={"side-menu-link-container"}>
+
+                        <Link
+                            href='/dashboard/deliveryNote/explore'
+                            className={'side-menu-link'}
+                        >
+                            Explorar
+                        </Link>
+
+                        <Link
+                            href='/dashboard/deliveryNote/create'
+                            className={'side-menu-link'}
+                        >
+                            Crear
+                        </Link>
+                    </div>
                 </div>
             </div>
 
-            <button onClick={logout} className={'logout-button'}>Logout</button>
+            <button onClick={logout} className={'side-menu-logout-button'}>Logout</button>
 
         </div>
     );
