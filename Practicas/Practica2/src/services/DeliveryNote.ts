@@ -133,20 +133,19 @@ export default class DeliveryNoteService {
      */
     async updateDeliveryNote(deliveryNoteData: DeliveryNoteData): Promise<DeliveryNoteData> {
 
+        const {_id, ...projectDataWithoutId} = deliveryNoteData;
+
         const options = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${new UserService().getClientToken()}`
             },
-            body: JSON.stringify(deliveryNoteData)
+            body: JSON.stringify(projectDataWithoutId)
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/?`
-            + new URLSearchParams({
-                id: deliveryNoteData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/${_id}?`,
             options
         ).then(res => res.json());
     }
@@ -166,10 +165,7 @@ export default class DeliveryNoteService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/?`
-            + new URLSearchParams({
-                id: deliveryNoteData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/${deliveryNoteData._id}`,
             options
         ).then(res => res.json());
     }

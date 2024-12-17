@@ -4,8 +4,6 @@ import DeliveryNoteService from "@/services/DeliveryNote";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import "./style.css"
-import {ClientData} from "@/interfaces/ClientDataTypes";
-import ClientService from "@/services/Clients";
 import ProjectService from "@/services/Project";
 import {ProjectData} from "@/interfaces/ProjectDataTypes";
 
@@ -15,7 +13,7 @@ function DeliveryNotesListItems(props: {
 }) {
 
     const deliveryNote: DeliveryNoteData = props.deliveryNote;
-    const updateSelectedClient = () => {
+    const updateSelectedDeliveryNote = () => {
         props.setSelectedDeliveryNote(deliveryNote);
     };
     const deliveryNoteService = new DeliveryNoteService();
@@ -33,7 +31,8 @@ function DeliveryNotesListItems(props: {
     }
 
     return (
-        <div onClick={updateSelectedClient} key={deliveryNote._id} className={"explore-deliveryNote-list-element"}>
+        <div onClick={updateSelectedDeliveryNote} key={deliveryNote._id}
+             className={"explore-deliveryNote-list-element"}>
             <h3>{deliveryNote.description}</h3>
             <button onClick={downloadDeliveryNote}>Download</button>
         </div>
@@ -131,11 +130,11 @@ export default function ExploreDeliveryNotePage() {
             {
                 selectedDeliveryNote &&
                 deliveryNoteEditable ?
-                    <div className={"explore-client-card"}>
-                        <label>Proyecto<select value={selectedDeliveryNote?.clientId}
+                    <div className={"explore-deliveryNote-card"}>
+                        <label>Proyecto<select value={selectedDeliveryNote?.projectId}
                                                onChange={(e) => setSelectedDeliveryNote({
                                                    ...selectedDeliveryNote,
-                                                   clientId: e.target.value
+                                                   projectId: e.target.value
                                                })}>
                             {projects.map((project) => (
                                 <option key={project._id} value={project._id}>{project.name}</option>
@@ -169,51 +168,29 @@ export default function ExploreDeliveryNotePage() {
                         <button onClick={deleteDeliveryNote}>Borrar</button>
                     </div>
                     :
-                    <div className={"explore-client-card"}>
-                        <label>Nombre<input
+                    <div className={"explore-deliveryNote-card"}>
+                        <label>Nombre del
+                            proyecto <label>{projects.filter((project) => project._id === selectedDeliveryNote?.projectId)[0]?.name}</label>
+                        </label>
+                        <label>Horas<input
                             type="text"
-                            value={selectedClient?.name}
+                            value={selectedDeliveryNote?.hours}
                             className="explore-client-card-title"
-                            readOnly
-                        /></label>
-                        <label>CIF<input
+                            readOnly/></label>
+                        <label>Descripción<input
                             type="text"
-                            value={selectedClient?.cif}
+                            value={selectedDeliveryNote?.description}
                             className="explore-client-card-cif"
                             readOnly
                         /></label>
-                        <label>Calle<input
+                        <label>Fecha de trabajo<input
                             type="text"
-                            value={selectedClient?.address?.street}
-                            className="explore-client-card-street"
+                            value={selectedDeliveryNote?.workdate}
+                            className="explore-client-card-cif"
                             readOnly
                         /></label>
-                        <label>Número<input
-                            type="text"
-                            value={selectedClient?.address?.number}
-                            className="explore-client-card-street-number"
-                            readOnly
-                        /></label>
-                        <label>Código postal<input
-                            type="text"
-                            value={selectedClient?.address?.postal}
-                            className="explore-client-card-postal"
-                            readOnly
-                        /></label>
-                        <label>Ciudad<input
-                            type="text"
-                            value={selectedClient?.address?.city}
-                            className="explore-client-card-city"
-                            readOnly
-                        /></label>
-                        <label>Provincia<input
-                            type="text"
-                            value={selectedClient?.address?.province}
-                            className="explore-client-card-province"
-                            readOnly
-                        /></label>
-                        <button onClick={() => setClientEditable(true)}>Editar</button>
-                        <button onClick={deleteClient}>Borrar</button>
+                        <button onClick={() => setDeliveryNoteEditable(true)}>Editar</button>
+                        <button onClick={deleteDeliveryNote}>Borrar</button>
                     </div>
             }
 
