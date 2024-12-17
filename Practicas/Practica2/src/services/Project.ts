@@ -48,7 +48,7 @@ export default class ProjectService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/`,
+            `${process.env["NEXT_PUBLIC_API_URL"]}/project`,
             options
         )
             .then(res => {
