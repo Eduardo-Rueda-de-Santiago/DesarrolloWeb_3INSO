@@ -92,8 +92,7 @@ export default function CreateProjectPage() {
             console.log(formData);
             new ProjectService().createProject(formData)
                 .then((res) => {
-                    console.log(res);
-                    // router.push("/dashboard/project/explore");
+                    router.push("/dashboard/project/explore");
                 })
         }
     }
