@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
     if (!isPublicUrl(request.nextUrl.pathname)) {
         const token = request.cookies.get('userToken')?.value;
         if (!token) {
-            return NextResponse.redirect(new URL('/login', request.nextUrl.origin));
+            return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
         }
     }
 }
