@@ -30,7 +30,7 @@
     position: relative;
     top: 15%;
     width: 30%;
-    height: 50%;
+    height: 70%;
     display: grid;
     background-color: #9cb84c;
     justify-content: center;
@@ -55,7 +55,7 @@
     position: absolute;
     top: 17.5%;
     width: 30%;
-    height: 50%;
+    height: 70%;
     display: grid;
     background-color: #9cb84c;
     justify-content: center;
@@ -65,7 +65,7 @@
 
 .explore-project-create-button {
     position: absolute;
-    top: 70%;
+    top: 90%;
     left: 50%;
     width: 10%;
     height: 5%;

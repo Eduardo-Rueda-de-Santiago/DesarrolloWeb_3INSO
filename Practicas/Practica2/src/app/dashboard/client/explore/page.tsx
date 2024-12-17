@@ -43,6 +43,7 @@ export default function ExploreClientPage() {
             clientService.updateClient(selectedClient)
                 .then(() => {
                     loadClients();
+                    setClientEditable(false);
                 })
         }
     }

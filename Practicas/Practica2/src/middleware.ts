@@ -20,14 +20,14 @@ function isPublicUrl(targetUrl: string): boolean {
 
 export function middleware(request: NextRequest) {
 
-    // if (!isPublicUrl(request.nextUrl.pathname)) {
-    //     const token = request.cookies.get('userToken')?.value;
-    //     if (!token) {
-    //         return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
-    //     } else {
-    //         console.log("tene cookie")
-    //     }
-    // }
+    if (!isPublicUrl(request.nextUrl.pathname)) {
+        const token = request.cookies.get('userToken')?.value;
+        if (!token) {
+            return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
+        } else {
+            console.log("tene cookie")
+        }
+    }
 }
 
 export const config = {
@@ -35,8 +35,3 @@ export const config = {
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:css|js|png|jpg|jpeg|svg|gif|ico|woff|woff2|ttf|eot|json)).*)',
     ],
 };
-
-//
-// export const config = {
-//     matcher: '/:path*',
-// }

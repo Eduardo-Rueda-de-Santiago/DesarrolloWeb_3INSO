@@ -91,20 +91,19 @@ export default class ProjectService {
      */
     async updateProject(projectData: ProjectData): Promise<ProjectData> {
 
+        const {_id, ...projectDataWithoutId} = projectData;
+
         const options = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${new UserService().getClientToken()}`
             },
-            body: JSON.stringify(projectData)
+            body: JSON.stringify(projectDataWithoutId)
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/client/?`
-            + new URLSearchParams({
-                id: projectData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/project/${_id}`,
             options
         ).then(res => res.json());
     }
@@ -124,10 +123,7 @@ export default class ProjectService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/project/?`
-            + new URLSearchParams({
-                id: projectData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/project/${projectData._id}`,
             options
         ).then(res => res.json());
     }
