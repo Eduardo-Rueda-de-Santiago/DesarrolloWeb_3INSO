@@ -32,7 +32,6 @@ export default function CreateProjectPage() {
         const clientService = new ClientService();
         clientService.getClients()
             .then((res) => {
-                console.log(res);
                 setClients(res);
             })
     }

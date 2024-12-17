@@ -39,6 +39,70 @@ export default class DeliveryNoteService {
     }
 
     /**
+     * Obtiene todos los albaranes
+     */
+    async getAllDeliveryNotes(): Promise<DeliveryNoteData[]> {
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${new UserService().getClientToken()}`
+            }
+        }
+
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote`,
+            options
+        )
+            .then(res => {
+                if (!res.ok) {
+                    throw new DeliveryNotesNotFetchedError();
+                }
+                return res.json()
+            });
+
+    }
+
+    async getDeliveryNoteById(deliveryNoteId: string): Promise<DeliveryNoteData> {
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${new UserService().getClientToken()}`
+            }
+        }
+
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/${deliveryNoteId}`,
+            options
+        ).then(res => {
+            if (!res.ok) {
+                throw new DeliveryNotesNotFetchedError();
+            }
+            return res.json()
+        });
+    }
+
+    async downloadDeliveryNotePdf(deliveryNoteId: string): Promise<Response> {
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${new UserService().getClientToken()}`
+            }
+        }
+
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/deliverynote/pdf/${deliveryNoteId}`,
+            options
+        );
+    }
+
+
+    /**
      * Crea un albarán
      * @param deliveryNoteData Datos del albarán a crear
      */

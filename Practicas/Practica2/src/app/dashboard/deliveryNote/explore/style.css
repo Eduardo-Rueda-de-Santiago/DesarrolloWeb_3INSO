@@ -1,10 +1,10 @@
-.explore-albaran-component {
+.explore-deliveryNote-component {
     background-color: #79b55c;
     width: 100%;
     height: 100vh;
 }
 
-.explore-albaran-titulo {
+.explore-deliveryNote-titulo {
     position: relative;
     text-align: center;
     top: 5%;
@@ -14,7 +14,7 @@
     background-color: #8cbc9d;
 }
 
-.creacion-albaran-formulario {
+.creacion-deliveryNote-formulario {
 
     position: relative;
     top: 10%;
@@ -26,7 +26,7 @@
     left: 40%;
 }
 
-.explore-albaran-list {
+.explore-deliveryNote-list {
     position: relative;
     top: 15%;
     width: 30%;
@@ -39,7 +39,7 @@
     overflow-y: scroll;
 }
 
-.explore-albaran-list-element {
+.explore-deliveryNote-list-element {
     position: relative;
     width: 20vw;
     background-color: #51da3b;
@@ -51,7 +51,7 @@
     text-align: center;
 }
 
-.explore-albaran-card {
+.explore-deliveryNote-card {
     position: absolute;
     top: 17.5%;
     width: 30%;
@@ -63,7 +63,7 @@
     grid-gap: 5%;
 }
 
-.explore-albaran-create-button {
+.explore-deliveryNote-create-button {
     position: absolute;
     top: 70%;
     left: 50%;
