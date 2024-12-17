@@ -50,14 +50,14 @@ export default function ExploreClientPage() {
     const deleteClient = () => {
         if (selectedClient) {
             clientService.deleteClient(selectedClient)
-                .then((res) => {
-                    console.log(res)
+                .then(() => {
+                    changeSelectedClient(null);
                     loadClients();
                 });
         }
     };
 
-    const changeSelectedClient = (client: ClientData) => {
+    const changeSelectedClient = (client: ClientData | null) => {
         setClientEditable(false);
         setSelectedClient(client);
     }
@@ -99,45 +99,60 @@ export default function ExploreClientPage() {
                             type="text"
                             value={selectedClient?.name}
                             className="explore-client-card-title"
-
+                            onChange={(e) => setSelectedClient({...selectedClient, name: e.target.value})}
                         />
                         <input
                             type="text"
                             value={selectedClient?.cif}
                             className="explore-client-card-cif"
-
+                            onChange={(e) => setSelectedClient({...selectedClient, cif: e.target.value})}
                         />
                         <input
                             type="text"
                             value={selectedClient?.address?.street}
                             className="explore-client-card-street"
-
+                            onChange={(e) => setSelectedClient({
+                                ...selectedClient,
+                                address: {...selectedClient.address, street: e.target.value}
+                            })}
                         />
                         <input
-                            type="text"
+                            type="number"
                             value={selectedClient?.address?.number}
                             className="explore-client-card-street-number"
-
+                            onChange={(e) => setSelectedClient({
+                                ...selectedClient,
+                                address: {...selectedClient.address, number: e.target.value}
+                            })}
                         />
                         <input
-                            type="text"
+                            type="number"
                             value={selectedClient?.address?.postal}
                             className="explore-client-card-postal"
-
+                            onChange={(e) => setSelectedClient({
+                                ...selectedClient,
+                                address: {...selectedClient.address, postal: e.target.value}
+                            })}
                         />
                         <input
                             type="text"
                             value={selectedClient?.address?.city}
                             className="explore-client-card-city"
-
+                            onChange={(e) => setSelectedClient({
+                                ...selectedClient,
+                                address: {...selectedClient.address, city: e.target.value}
+                            })}
                         />
                         <input
                             type="text"
                             value={selectedClient?.address?.province}
                             className="explore-client-card-province"
-
+                            onChange={(e) => setSelectedClient({
+                                ...selectedClient,
+                                address: {...selectedClient.address, province: e.target.value}
+                            })}
                         />
-                        <button onClick={() => updateClient()}>Salvar</button>
+                        <button onClick={updateClient}>Salvar</button>
                         <button onClick={deleteClient}>Borrar</button>
                     </div>
                     :

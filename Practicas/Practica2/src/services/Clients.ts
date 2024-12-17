@@ -68,20 +68,19 @@ export default class ClientService {
      */
     async updateClient(clientData: ClientData): Promise<ClientData> {
 
+        const {_id, ...clientDataWithoutId} = clientData;
+
         const options = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${new UserService().getClientToken()}`
             },
-            body: JSON.stringify(clientData)
+            body: JSON.stringify(clientDataWithoutId)
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/client/?`
-            + new URLSearchParams({
-                id: clientData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/client/${_id}`,
             options
         ).then(res => res.json());
     }

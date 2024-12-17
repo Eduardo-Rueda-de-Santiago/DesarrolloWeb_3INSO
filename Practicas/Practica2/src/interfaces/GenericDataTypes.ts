@@ -1,7 +1,7 @@
 export interface GenericAddress {
-    street: string,
-    number: number,
-    postal: number,
-    city: string,
-    province: string
+    street: string | undefined,
+    number: number | undefined,
+    postal: number | undefined,
+    city: string | undefined,
+    province: string | undefined
 }
