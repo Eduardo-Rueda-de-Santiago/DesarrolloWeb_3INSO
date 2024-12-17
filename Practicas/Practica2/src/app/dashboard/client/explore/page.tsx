@@ -96,19 +96,19 @@ export default function ExploreClientPage() {
                 selectedClient &&
                 clientEditable ?
                     <div className={"explore-client-card"}>
-                        <input
+                        <label>Nombre<input
                             type="text"
                             value={selectedClient?.name}
                             className="explore-client-card-title"
                             onChange={(e) => setSelectedClient({...selectedClient, name: e.target.value})}
-                        />
-                        <input
+                        /></label>
+                        <label>Cif<input
                             type="text"
                             value={selectedClient?.cif}
                             className="explore-client-card-cif"
                             onChange={(e) => setSelectedClient({...selectedClient, cif: e.target.value})}
-                        />
-                        <input
+                        /></label>
+                        <label>Calle<input
                             type="text"
                             value={selectedClient?.address?.street}
                             className="explore-client-card-street"
@@ -116,8 +116,8 @@ export default function ExploreClientPage() {
                                 ...selectedClient,
                                 address: {...selectedClient.address, street: e.target.value}
                             })}
-                        />
-                        <input
+                        /></label>
+                        <label>Número<input
                             type="number"
                             value={selectedClient?.address?.number}
                             className="explore-client-card-street-number"
@@ -125,8 +125,8 @@ export default function ExploreClientPage() {
                                 ...selectedClient,
                                 address: {...selectedClient.address, number: e.target.value}
                             })}
-                        />
-                        <input
+                        /></label>
+                        <label>Código postal<input
                             type="number"
                             value={selectedClient?.address?.postal}
                             className="explore-client-card-postal"
@@ -134,8 +134,8 @@ export default function ExploreClientPage() {
                                 ...selectedClient,
                                 address: {...selectedClient.address, postal: e.target.value}
                             })}
-                        />
-                        <input
+                        /></label>
+                        <label>Ciudad<input
                             type="text"
                             value={selectedClient?.address?.city}
                             className="explore-client-card-city"
@@ -143,8 +143,8 @@ export default function ExploreClientPage() {
                                 ...selectedClient,
                                 address: {...selectedClient.address, city: e.target.value}
                             })}
-                        />
-                        <input
+                        /></label>
+                        <label>Provincia<input
                             type="text"
                             value={selectedClient?.address?.province}
                             className="explore-client-card-province"
@@ -152,59 +152,57 @@ export default function ExploreClientPage() {
                                 ...selectedClient,
                                 address: {...selectedClient.address, province: e.target.value}
                             })}
-                        />
+                        /></label>
                         <button onClick={updateClient}>Salvar</button>
                         <button onClick={deleteClient}>Borrar</button>
                     </div>
                     :
                     <div className={"explore-client-card"}>
-                        <input
+                        <label>Nombre<input
                             type="text"
                             value={selectedClient?.name}
                             className="explore-client-card-title"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>CIF<input
                             type="text"
                             value={selectedClient?.cif}
                             className="explore-client-card-cif"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>Calle<input
                             type="text"
                             value={selectedClient?.address?.street}
                             className="explore-client-card-street"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>Número<input
                             type="text"
                             value={selectedClient?.address?.number}
                             className="explore-client-card-street-number"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>Código postal<input
                             type="text"
                             value={selectedClient?.address?.postal}
                             className="explore-client-card-postal"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>Ciudad<input
                             type="text"
                             value={selectedClient?.address?.city}
                             className="explore-client-card-city"
                             readOnly
-                        />
-                        <input
+                        /></label>
+                        <label>Provincia<input
                             type="text"
                             value={selectedClient?.address?.province}
                             className="explore-client-card-province"
                             readOnly
-                        />
+                        /></label>
                         <button onClick={() => setClientEditable(true)}>Editar</button>
                         <button onClick={deleteClient}>Borrar</button>
                     </div>
-
-
             }
 
         </div>
