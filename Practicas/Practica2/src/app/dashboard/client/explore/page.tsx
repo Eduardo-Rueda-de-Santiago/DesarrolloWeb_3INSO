@@ -27,7 +27,7 @@ export default function ExploreClientPage() {
 
     return (
         <div>
-            <p>Soy un dashboard</p>
+          
 
             <p> {clients.toString()}
             </p>

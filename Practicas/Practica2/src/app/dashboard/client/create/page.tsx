@@ -4,6 +4,7 @@ import {ClientData} from "@/interfaces/ClientDataTypes";
 import {useState} from "react";
 import ClientService from "@/services/Clients";
 import {useRouter} from "next/navigation";
+import "./style.css"
 
 export default function CreateClient() {
 
@@ -69,54 +70,54 @@ export default function CreateClient() {
         if (validateForm()) {
             new ClientService().createClient(formData)
                 .then(() => {
-                    router.push("/dashboard");
+                    router.push("/dashboard/client/explore");
                 })
         }
     }
 
     return (
-        <div>
-            
-            <h2 className={''}>Creación de cliente</h2>
+        <div className={"creacion-cliente-componente"}>
 
-            <form onSubmit={submit}>
-                <label>
+            <h2 className={'creacion-cliente-titulo'}>Creación de cliente</h2>
+
+            <form className={"creacion-cliente-formulario"} onSubmit={submit}>
+                <label className={"creacion-cliente-label"}>
                     Nombre:
                     <input type="text" value={formData.name} onChange={(e) => updateFormData("name", e.target.value)}/>
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     CIF:
                     <input type="text" value={formData.cif} onChange={(e) => updateFormData("cif", e.target.value)}/>
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     Calle:
                     <input type="text" value={formData.address?.street}
                            onChange={(e) => updateFormData("address.street", e.target.value)}/>
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     Número:
                     <input type="number" value={formData.address?.number}
                            onChange={(e) => updateFormData("address.number", e.target.value)}/>
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     Código postal:
                     <input type="number" value={formData.address?.postal}
                            onChange={(e) => updateFormData("address.postal", e.target.value)}/>
 
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     Ciudad:
                     <input type="text" value={formData.address?.city}
                            onChange={(e) => updateFormData("address.city", e.target.value)}/>
                 </label>
-                <label>
+                <label className={"creacion-cliente-label"}>
                     Provincia:
                     <input type="text" value={formData.address?.province}
                            onChange={(e) => updateFormData("address.province", e.target.value)}/>
 
                 </label>
                 <input
-                    className={''}
+                    className={'creacion-cliente-submit'}
                     type={'submit'}
                 />
 
