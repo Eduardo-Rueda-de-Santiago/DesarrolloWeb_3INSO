@@ -101,10 +101,7 @@ export default class ClientService {
         }
 
         return fetch(
-            `${process.env["NEXT_PUBLIC_API_URL"]}/client/?`
-            + new URLSearchParams({
-                id: clientData._id
-            }).toString(),
+            `${process.env["NEXT_PUBLIC_API_URL"]}/client/${clientData._id}`,
             options
         ).then(res => res.json());
     }

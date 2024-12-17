@@ -36,12 +36,20 @@
     justify-content: center;
     left: 15%;
     grid-gap: 5%;
+    overflow-y: scroll;
+
 }
 
 .explore-client-list-element {
     position: relative;
-    width: 100%;
+    width: 20vw;
     background-color: #51da3b;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
 
 .explore-client-card {
@@ -54,4 +62,14 @@
     justify-content: center;
     left: 60%;
     grid-gap: 5%;
+}
+
+.explore-client-create-button {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    width: 10%;
+    height: 5%;
+    border-radius: 10px;
+    border: none;
 }
