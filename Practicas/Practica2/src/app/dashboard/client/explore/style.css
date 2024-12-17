@@ -1,0 +1,57 @@
+.explore-client-component {
+    background-color: #79b55c;
+    width: 100%;
+    height: 100vh;
+}
+
+.explore-client-titulo {
+    position: relative;
+    text-align: center;
+    top: 5%;
+    width: 15%;
+    left: 42.5%;
+    border-radius: 10px;
+    background-color: #8cbc9d;
+}
+
+.creacion-client-formulario {
+
+    position: relative;
+    top: 10%;
+    width: 20%;
+    height: 30%;
+    display: grid;
+    background-color: #9cb84c;
+    justify-content: center;
+    left: 40%;
+}
+
+.explore-client-list {
+    position: relative;
+    top: 15%;
+    width: 30%;
+    height: 50%;
+    display: grid;
+    background-color: #9cb84c;
+    justify-content: center;
+    left: 15%;
+    grid-gap: 5%;
+}
+
+.explore-client-list-element {
+    position: relative;
+    width: 100%;
+    background-color: #51da3b;
+}
+
+.explore-client-card {
+    position: absolute;
+    top: 17.5%;
+    width: 30%;
+    height: 50%;
+    display: grid;
+    background-color: #9cb84c;
+    justify-content: center;
+    left: 60%;
+    grid-gap: 5%;
+}

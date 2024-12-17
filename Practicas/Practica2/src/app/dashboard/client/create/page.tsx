@@ -69,14 +69,14 @@ export default function CreateClient() {
         e.preventDefault(); // Prevent page refresh on form submission
         if (validateForm()) {
             new ClientService().createClient(formData)
-                .then(() => {
+                .then((res) => {
                     router.push("/dashboard/client/explore");
                 })
         }
     }
 
     return (
-        <div className={"creacion-cliente-componente"}>
+        <div className={"creacion-cliente-component"}>
 
             <h2 className={'creacion-cliente-titulo'}>Creación de cliente</h2>
 
