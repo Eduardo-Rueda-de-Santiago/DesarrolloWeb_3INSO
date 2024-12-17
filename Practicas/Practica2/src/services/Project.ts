@@ -38,6 +38,27 @@ export default class ProjectService {
             })
     }
 
+    async getAllProjects(): Promise<ProjectData[]> {
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${new UserService().getClientToken()}`
+            }
+        }
+
+        return fetch(
+            `${process.env["NEXT_PUBLIC_API_URL"]}/`,
+            options
+        )
+            .then(res => {
+                if (!res.ok) {
+                    throw new ProjectsNotFetchedError();
+                }
+                return res.json()
+            })
+    }
+
     /**
      * Crea un proyecto
      * @param projectData Datos del cliente a crear

@@ -20,12 +20,14 @@ function isPublicUrl(targetUrl: string): boolean {
 
 export function middleware(request: NextRequest) {
 
-    if (!isPublicUrl(request.nextUrl.pathname)) {
-        const token = request.cookies.get('userToken')?.value;
-        if (!token) {
-            return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
-        }
-    }
+    // if (!isPublicUrl(request.nextUrl.pathname)) {
+    //     const token = request.cookies.get('userToken')?.value;
+    //     if (!token) {
+    //         return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
+    //     } else {
+    //         console.log("tene cookie")
+    //     }
+    // }
 }
 
 export const config = {
