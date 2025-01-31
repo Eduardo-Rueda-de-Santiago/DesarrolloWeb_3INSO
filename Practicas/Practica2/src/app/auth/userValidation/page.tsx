@@ -39,7 +39,7 @@ export default function UserValidation() {
         if (validateForm()) {
             new UserService().validateUser(formData)
                 .then((res) => {
-                    router.push("/dashboard");
+                    router.push("/dashboard/client/explore");
                 })
                 .catch((err: Error) => {
                     console.log(err);

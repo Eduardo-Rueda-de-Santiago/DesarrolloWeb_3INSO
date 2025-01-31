@@ -49,7 +49,8 @@ export default function Login() {
         e.preventDefault(); // Prevent page refresh on form submission
         if (validateForm()) {
             new UserService().login(formData)
-                .then(() => {
+                .then((res) => {
+                    console.log(res)
                     router.push("/dashboard/client/explore");
                 })
         }
